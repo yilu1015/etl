@@ -1,0 +1,20 @@
+# Default pipeline configuration
+# Customize settings here
+
+pipeline:
+  name: "Chinese Archives ETL"
+  version: "0.1.0"
+  
+source:
+  pdf_path: "data/sources"
+  metadata_path: "data/sources/job_metadata"
+  
+output:
+  analytics_path: "data/analytics"
+  exports_path: "data/exports"
+  temp_path: "data/temp"
+
+processing:
+  batch_size: 100
+  num_workers: 4
+  timeout_seconds: 300

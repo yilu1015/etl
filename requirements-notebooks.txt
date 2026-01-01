@@ -1,0 +1,6 @@
+-r requirements.txt
+
+jupyter>=1.0.0
+notebook>=6.4.0
+jupyterlab>=3.0.0
+ipython>=7.30.0
