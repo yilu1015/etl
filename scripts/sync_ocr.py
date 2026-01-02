@@ -23,6 +23,8 @@ import boto3
 from dotenv import load_dotenv
 from tqdm import tqdm
 
+from etl_metadata import update_central_registry
+
 # Load environment variables
 load_dotenv()
 
@@ -212,6 +214,16 @@ def sync_job_to_b2(job_id: str, local_dir: Path, skip_images: bool = False, quie
                         logger.error(f"Failed to upload {s3_key}: {e}")
     
     logger.info(f"✓ Sync complete: {total_uploaded} uploaded, {total_skipped} skipped")
+    
+    # Update central registry
+    sync_metadata = {
+        "status": "completed",
+        "files_uploaded": total_uploaded,
+        "files_skipped": total_skipped,
+        "b2_bucket": B2_ANALYTICS_BUCKET,
+    }
+    update_central_registry("sync_ocr", real_job_id, sync_metadata)
+    logger.info(f"Updated central registry with sync_ocr step for job {real_job_id}")
 
 
 def main():

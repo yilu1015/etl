@@ -160,6 +160,11 @@ def update_central_registry(step_name: str, job_id: str, step_metadata: dict):
     if "results_summary" in step_metadata:
         step_info["results_summary"] = step_metadata["results_summary"]
     
+    # Include any additional fields from step_metadata (e.g., files_uploaded, b2_bucket for sync_ocr)
+    for key, value in step_metadata.items():
+        if key not in ["status"] and key not in step_info:
+            step_info[key] = value
+    
     # Add step to pipeline_steps
     central_registry["pipeline_steps"][step_name] = step_info
     
