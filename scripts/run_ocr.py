@@ -1429,6 +1429,9 @@ Examples:
     }
     
     # Save job metadata to centralized job_metadata folder (with source_job_id)
+    # Use the first non-None source job ID for the summary (all citekeys should share the same one)
+    source_job_id = next((sjid for sjid in source_job_ids.values() if sjid is not None), None)
+    
     save_run_metadata(
         Path(args.output),
         job_id,

@@ -4,9 +4,9 @@
 # ============================================================
 
 # Source PDFs - uploaded to B2, never commit
-data/sources/*.pdf
-data/sources/*.zip
-data/sources/*.tar.gz
+data/sources/**/*.pdf
+data/sources/**/*.zip
+data/sources/**/*.tar.gz
 
 # Job metadata from uploads - synced to B2
 data/sources/job_metadata/*.json
@@ -15,6 +15,10 @@ data/sources/job_metadata/*.json
 data/analytics/**/*.json
 data/analytics/**/*.png
 data/analytics/**/*.csv
+data/analytics/**/*.pdf
+
+# Symlinks to latest job results (local convenience only, not tracked)
+**/latest
 
 # Exports - final products for end-users, in B2
 data/exports/**
