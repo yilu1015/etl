@@ -23,6 +23,7 @@ data/exports/**
 data/temp/
 data/scratch/
 data/*.tmp
+tests/
 
 # ============================================================
 # NOTEBOOKS (keep reference, ignore exploration)

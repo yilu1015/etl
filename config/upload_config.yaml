@@ -1,0 +1,24 @@
+# ETL Upload Configuration
+# This file controls PDF upload behavior and directory structure
+
+directories:
+  # Temporary staging directory for normalized PDFs before upload
+  staging: ./staging_normalized
+  # Local metadata storage (job IDs, checksums, run logs)
+  metadata: data/sources/job_metadata
+
+# Backblaze B2 configuration
+b2:
+  # Default bucket name (can be overridden with B2_SOURCE_BUCKET env var)
+  default_bucket: cna-sources
+  # Default region (can be overridden with B2_SOURCE_REGION env var)
+  default_region: us-east-005
+  # S3-compatible endpoint URL (can be overridden with B2_SOURCE_ENDPOINT_URL env var)
+  default_endpoint_url: https://s3.us-east-005.backblazeb2.com
+
+# Citekey validation rules
+citekey_rules:
+  # Series that require 3-digit volume numbers (e.g., zywxhb_v001, zywxhb_v002, etc.)
+  # Add series names here as needed
+  three_digit_volume_series:
+    - zywxhb

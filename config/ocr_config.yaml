@@ -1,0 +1,262 @@
+# OCR Pipeline Configuration - Complete
+# All settings for the Runpod OCR processing step in one place
+# Organized by functional area with helpful comments
+
+# ============================================================
+# B2 Source Configuration
+# Settings for generating URLs for PDFs that were uploaded by upload_pdfs.py
+# ============================================================
+
+b2_source:
+  # B2 bucket containing uploaded source PDFs
+  # Override with: B2_SOURCE_BUCKET env var
+  bucket: cna-sources
+  
+  # B2 region for the bucket
+  # Override with: B2_SOURCE_REGION env var
+  region: us-east-005
+  
+  # S3-compatible endpoint URL for B2
+  # Override with: B2_SOURCE_ENDPOINT_URL env var
+  endpoint_url: https://s3.us-east-005.backblazeb2.com
+  
+  # Presigned URL expiration time in seconds (default: 12 hours)
+  # Increase if OCR processing takes longer than 12 hours
+  presigned_url_expiry: 43200
+
+
+# ============================================================
+# Runpod S3 Configuration (Optional for image extraction)
+# Required only if using --extract-images to download images
+# from Runpod network volume back to local storage
+# ============================================================
+
+runpod_s3:
+  # S3 API access key ID for Runpod (e.g., user_***...)
+  # IMPORTANT: Store actual credentials in .env file, not here
+  # Set via: RUNPOD_S3_ACCESS_KEY_ID env var
+  access_key_id: null
+  
+  # S3 API secret key for Runpod (e.g., rps_***...)
+  # IMPORTANT: Store actual credentials in .env file, not here
+  # Set via: RUNPOD_S3_SECRET_ACCESS_KEY env var
+  secret_access_key: null
+  
+  # Runpod S3 endpoint URL for your datacenter
+  # Examples:
+  #   EU-RO-1: https://s3api-eu-ro-1.runpod.io
+  #   US-EAST-1: https://s3api-us-east-1.runpod.io
+  # Set via: RUNPOD_S3_ENDPOINT_URL env var (or use one of the examples above)
+  endpoint_url: https://s3api-eu-ro-1.runpod.io
+  
+  # Runpod datacenter region
+  # Examples: EU-RO-1, US-EAST-1
+  # Set via: RUNPOD_S3_REGION env var
+  region: null
+  
+  # Runpod network volume ID
+  # Set via: RUNPOD_NETWORK_VOLUME_ID env var
+  network_volume_id: null
+
+
+# ============================================================
+# Job Submission & Polling Configuration
+# Controls how we submit jobs to Runpod and wait for results
+# ============================================================
+
+job_submission:
+  # How often to poll Runpod for job status (in seconds)
+  # Lower = faster feedback but more API calls
+  poll_interval: 2
+  
+  # Maximum time to wait for a job to complete (in seconds)
+  # Default: 30 minutes (1800 seconds)
+  # Increase for very large documents or slow endpoints
+  max_poll_duration: 1800
+  
+  # Number of retries on transient connection errors
+  # (DNS failures, timeouts, etc.)
+  # Does NOT retry permanent errors (job failed, invalid input)
+  max_retries_per_status: 5
+
+
+# ============================================================
+# Batch Processing Configuration
+# Controls how PDFs are grouped into processing batches
+# ============================================================
+
+batching:
+  # Target number of pages per batch
+  # The pipeline groups PDFs by actual page count to hit this target
+  # Lower = smaller batches, more submissions, slower overall
+  # Higher = larger batches, fewer submissions, faster overall
+  # Practical range: 100-500 pages per batch
+  # Max per batch: 1500 pages (hard limit on Runpod endpoint)
+  default_pages_per_batch: 300
+  
+  # Hard maximum pages per batch
+  # Do NOT increase this without confirming Runpod endpoint can handle it
+  max_pages_per_batch: 1500
+
+
+# ============================================================
+# Metadata & Source Tracking
+# ============================================================
+
+metadata:
+  # Directory containing upload_pdfs.py job metadata
+  # Used to track lineage (which upload batch these PDFs came from)
+  source_job_metadata_dir: data/sources/job_metadata
+
+
+# ============================================================
+# Default Directories
+# ============================================================
+
+directories:
+  # Default input directory for PDFs (can be overridden via --input CLI arg)
+  input: data/sources/
+  
+  # Default output directory for OCR results (can be overridden via --output CLI arg)
+  output: data/analytics/ocr
+
+
+# ============================================================
+# PaddleOCR Pipeline Configuration
+# These settings control how the OCR model processes documents
+# Reference: https://github.com/PaddlePaddle/PaddleOCR
+# ============================================================
+
+pipeline:
+  ocr:
+    # OCR engine to use
+    # Options: paddleocr, paddleocr_vl (visual language)
+    engine: paddleocr_vl
+    
+    # Languages to detect and recognize
+    # Common codes:
+    #   ch = Chinese (simplified)
+    #   en = English
+    #   ja = Japanese
+    #   ko = Korean
+    #   fr = French
+    #   de = German
+    # Add multiple languages as needed
+    language:
+      - ch
+      #- en
+    
+    # Use angle classification (rotated text detection)
+    # Useful for documents with mixed orientations
+    use_angle_cls: true
+    
+    # Use GPU for inference if available
+    # Set to false to force CPU-only processing
+    use_gpu: true
+    
+    # GPU device ID (if multiple GPUs)
+    # 0 = first GPU, 1 = second GPU, etc.
+    gpu_id: 0
+    
+    # Batch size for model inference
+    # Larger = faster but more memory
+    # Typical range: 8-64 depending on GPU
+    batch_size: 32
+    
+    # Model directory (null = use default downloaded models)
+    # Set to custom path if using fine-tuned models
+    model_dir: null
+  
+  processing:
+    # Number of parallel worker threads for preprocessing
+    # CPU-bound work (page extraction, image processing)
+    max_workers: 4
+    
+    # Timeout per PDF in seconds
+    # Increase for very large PDFs
+    timeout_seconds: 300
+    
+    # Number of retry attempts for transient failures
+    retry_attempts: 3
+  
+  output:
+    # Default output format for OCR results
+    # Options: json, markdown
+    # Note: Use --extract-images flag to also extract visualization images
+    # (images are handled separately via CLI flag, not this config)
+    format: json
+    
+    # Include confidence scores in output
+    # (0.0-1.0 for each text region)
+    include_confidence: true
+    
+    # Include bounding boxes in output
+    # (x, y, width, height for each text region)
+    include_bboxes: true
+
+
+# ============================================================
+# OCR Prediction Parameters
+# Fine-tune OCR accuracy and output by adjusting these thresholds
+# ============================================================
+
+predict:
+  detection:
+    # Confidence threshold for text detection (0.0-1.0)
+    # Higher = only detect very confident regions, miss small text
+    # Lower = detect more regions but may include noise
+    # Typical range: 0.3-0.7
+    confidence_threshold: 0.5
+    
+    # Non-maximum suppression (NMS) threshold (0.0-1.0)
+    # Controls overlap removal between detected regions
+    # Lower = stricter (remove more overlapping regions)
+    # Higher = lenient (keep more overlapping regions)
+    # Typical range: 0.2-0.5
+    nms_threshold: 0.3
+  
+  recognition:
+    # Confidence threshold for character recognition (0.0-1.0)
+    # Higher = only accept high-confidence character predictions
+    # Lower = accept lower confidence characters (may have more errors)
+    # Typical range: 0.2-0.5
+    confidence_threshold: 0.3
+  
+  angle_classification:
+    # Confidence threshold for angle classification
+    # Determines if a text region is rotated (0-180 degrees)
+    confidence_threshold: 0.5
+  
+  output:
+    # Include cropped image patches in output
+    # Useful for debugging but increases output size
+    include_cropped_images: false
+    
+    # Maximum number of results per image
+    # null = no limit
+    # Set to limit output for memory efficiency
+    max_results: null
+
+
+# ============================================================
+# Tuning Tips
+# Quick reference for different quality/speed trade-offs
+# ============================================================
+
+# For FAST but LOWER QUALITY results:
+#   predict.detection.confidence_threshold: 0.3
+#   predict.recognition.confidence_threshold: 0.2
+#   predict.detection.nms_threshold: 0.5
+#
+# For SLOW but HIGHER QUALITY results:
+#   predict.detection.confidence_threshold: 0.7
+#   predict.recognition.confidence_threshold: 0.5
+#   predict.detection.nms_threshold: 0.2
+#
+# For CHINESE DOCUMENTS:
+#   Keep confidence thresholds moderate (0.3-0.5)
+#   Use pipeline.ocr.use_angle_cls=true to handle varying page orientations
+#
+# For NOISY SCANS:
+#   Lower confidence thresholds to catch text
+#   Increase nms_threshold to reduce false detections

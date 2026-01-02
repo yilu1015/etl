@@ -1,4 +1,26 @@
+[project]
+name = "chinese-archives-etl"
+version = "0.1.0"
+description = "ETL pipeline for Chinese Archives PDFs"
+requires-python = ">=3.11"
+
+dependencies = [
+    "boto3>=1.42.19",
+    "pypdf2>=3.0.1",
+    "python-dotenv>=1.2.1",
+    "pyyaml>=6.0.3",
+    "requests>=2.32.5",
+    "tqdm>=4.67.1",
+]
+
+[tool.uv]
+# No python-version needed - let requires-python handle it
+
 [dependency-groups]
 dev = [
+    "boto3>=1.42.19",
+    "dotenv>=0.9.9",
     "ipykernel>=7.1.0",
+    "pyyaml>=6.0.3",
+    "tqdm>=4.67.1",
 ]
