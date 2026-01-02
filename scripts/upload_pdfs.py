@@ -2,6 +2,13 @@
 """
 Upload PDFs to Backblaze B2 with citekey validation and checksum-based skipping.
 
+ETL Pipeline Step 0: Upload (Entry Point)
+- Input: Local PDF files or directories
+- Processing: Validate, normalize, upload to B2
+- Output: PDFs in B2, metadata in data/sources/job_metadata/
+
+This is the ONLY step without --source-job-id (it's the pipeline source!)
+
 Canonical target structure in bucket `cna-sources`:
 
 cna-sources/
@@ -9,6 +16,22 @@ cna-sources/
     <citekey>.pdf
   run_metadata/
     <job_id>.json
+
+Usage:
+  # Upload from directory
+  python upload_pdfs.py --input data/sources/batch_2026/
+  
+  # Upload specific files
+  python upload_pdfs.py --input dagz_v01.pdf dagz_v02.pdf
+  
+  # Upload by citekeys (finds PDFs in --local-dir)
+  python upload_pdfs.py --citekeys dagz_v01 dagz_v02 --local-dir /path/to/pdfs/
+  
+  # Upload by wildcard pattern
+  python upload_pdfs.py --pattern "mzdnp2023_v*" --local-dir /path/to/pdfs/
+  
+  # Dry run (validate only)
+  python upload_pdfs.py --input data/sources/test/ --dry-run
 
 This script:
 - validates citekeys
@@ -38,6 +61,7 @@ import boto3
 import yaml
 from dotenv import load_dotenv
 from tqdm import tqdm
+import fnmatch
 
 # ============================================================
 # CONFIGURATION
@@ -395,14 +419,53 @@ def upload_changed_pdfs(
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Normalize and upload PDFs to Backblaze B2"
+        description="Upload PDFs to Backblaze B2 (ETL Step 0: Entry Point)",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Upload from directory
+  python upload_pdfs.py --input data/sources/batch_2026/
+  
+  # Upload specific files
+  python upload_pdfs.py --input dagz_v01.pdf dagz_v02.pdf
+  
+  # Upload by citekeys (finds PDFs in --local-dir)
+  python upload_pdfs.py --citekeys dagz_v01 dagz_v02 --local-dir /path/to/pdfs/
+  
+  # Upload by wildcard pattern
+  python upload_pdfs.py --pattern "mzdnp2023_v*" --local-dir /path/to/pdfs/
+  
+  # Dry run (validate only)
+  python upload_pdfs.py --input data/sources/test/ --dry-run
+
+Note: This is the pipeline entry point. No --source-job-id needed.
+      The job_id generated here becomes the source for subsequent steps.
+        """
+    )
+
+    # Standardized input group
+    input_group = parser.add_mutually_exclusive_group(required=True)
+    input_group.add_argument(
+        "--input",
+        nargs="+",
+        help="One or more input directories or PDF files"
+    )
+    input_group.add_argument(
+        "--citekeys",
+        nargs="+",
+        help="Explicit list of citekeys (finds PDFs in --local-dir)"
+    )
+    input_group.add_argument(
+        "--pattern",
+        nargs="+",
+        help="Citekey patterns with wildcards (e.g., 'mzdnp2023_v*'). "
+             "Finds matching PDFs in --local-dir. Only _v* and _y* patterns supported."
     )
 
     parser.add_argument(
-        "--input",
-        nargs="+",
-        required=True,
-        help="One or more input directories or PDF files",
+        "--local-dir",
+        type=Path,
+        help="Local directory containing PDFs (required with --citekeys or --pattern)"
     )
 
     parser.add_argument(
@@ -461,11 +524,28 @@ def parse_args():
 # ============================================================
 
 def main():
-    load_dotenv()  # safe: .env must be gitignored
+    load_dotenv()
 
     args = parse_args()
 
-    input_dirs = [Path(p) for p in args.input]
+    # Resolve input
+    if args.input:
+        input_paths = [Path(p) for p in args.input]
+    elif args.citekeys:
+        if not args.local_dir:
+            print("❌ --local-dir required when using --citekeys")
+            sys.exit(1)
+        
+        local_dir = Path(args.local_dir)
+        if not local_dir.exists():
+            print(f"❌ Local directory not found: {local_dir}")
+            sys.exit(1)
+        
+        input_paths = [local_dir / f"{ck}.pdf" for ck in args.citekeys]
+    else:
+        print("❌ Must provide --input or --citekeys")
+        sys.exit(1)
+
     staging_dir = Path(args.staging)
     metadata_dir = Path(args.metadata_dir)
 
@@ -475,7 +555,7 @@ def main():
     if not args.quiet:
         print("Collecting PDFs...")
 
-    pdfs = sorted(collect_pdfs(input_dirs))
+    pdfs = sorted(collect_pdfs(input_paths))
 
     if not pdfs:
         if not args.quiet:
@@ -548,6 +628,8 @@ def main():
 
     if not args.quiet:
         print("\n✓ Done.")
+        print(f"\n📦 Job ID: {job_id}")
+        print(f"Use this job ID as --source-job-id in subsequent pipeline steps (run_ocr.py)")
 
 
 if __name__ == "__main__":

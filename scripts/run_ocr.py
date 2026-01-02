@@ -3,25 +3,28 @@
 Run OCR via Runpod (PaddleOCR-VL) using B2 presigned URLs.
 
 ETL Pipeline Step 2: OCR Processing
-- Input: List of citekeys (must exist in B2 from upload_pdfs_to_b2.py)
-- Source: B2 bucket (cna-sources)
+- Input: List of citekeys OR directory of PDFs
+- Source: B2 bucket (cna-sources) OR local files
 - Processing: Runpod serverless endpoint with page-based batching
 - Output: Local results under data/analytics/ocr/<citekey>/<job_id>/
-  with 'latest' symlink for easy access
+
+Lineage Chain:
+  upload_pdfs (source) → run_ocr (this step) → sync_ocr → parse_structure
 
 Usage:
-
-  python run_ocr.py --input data/sources/test \\
-    --output data/analytics/ocr \\
-
-  python run_ocr.py --citekeys dagz_v01 dagz_v02 dagz_v03 \\
-    --output data/analytics/ocr \\
-    --batch-pages 200 \\
-    --extract-images
-    
+  # Standard workflow
   python run_ocr.py --citekeys dagz_v01 dagz_v02 \\
-    --output data/analytics/ocr \\
-    --source-job-id 2025-12-31_22-04-05
+    --source-job-id 2026-01-02_00-28-28
+  
+  # From local directory
+  python run_ocr.py --input data/sources/test \\
+    --source-job-id 2026-01-02_00-28-28
+  
+  # Resume failed items
+  python run_ocr.py --resume-from 2026-01-02_00-33-11 \\
+    --source-job-id 2026-01-02_00-28-28
+
+⚠️  IMPORTANT: Always use explicit --source-job-id, never "latest"
 """
 
 import argparse
@@ -44,7 +47,10 @@ import yaml
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-from etl_metadata import save_step_metadata
+from etl_metadata import (
+    save_step_metadata, validate_job_id, get_failed_citekeys,
+    expand_citekey_patterns, preview_pipeline_run, print_dry_run_summary
+)
 
 try:
     from PyPDF2 import PdfReader
@@ -1024,62 +1030,65 @@ def save_run_metadata(output_dir: Path, job_id: str, citekeys: List[str], job_id
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run OCR via Runpod on B2 sources with page-based batching",
+        description="Run OCR via Runpod on B2 sources (ETL Step 2: OCR)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Process single citekey
-  python run_ocr.py --citekeys dagz_v01 --output data/analytics/ocr
-  
-  # Process multiple citekeys
-  python run_ocr.py --citekeys dagz_v01 dagz_v02 dagz_v03 --output data/analytics/ocr
-  
-  # Discover from directory (auto-extract citekeys from filenames)
-  python run_ocr.py --input data/sources/test --output data/analytics/ocr
-  
-  # With image extraction
-  python run_ocr.py --citekeys dagz_v01 --output data/analytics/ocr --extract-images
-  
-  # With source job tracking for lineage
+  # Standard workflow: Process citekeys from B2
   python run_ocr.py --citekeys dagz_v01 dagz_v02 \\
-    --output data/analytics/ocr \\
-    --source-job-id 2025-12-31_22-04-05
+    --source-job-id 2026-01-02_00-28-28
   
-  # Auto-detect latest source job
-  python run_ocr.py --citekeys dagz_v01 dagz_v02 \\
-    --output data/analytics/ocr \\
-    --source-job-id latest
+  # From local directory
+  python run_ocr.py --input data/sources/test \\
+    --source-job-id 2026-01-02_00-28-28
   
-  # Custom batching
-  python run_ocr.py --citekeys dagz_v01 dagz_v02 --output data/analytics/ocr --batch-pages 300
+  # Resume failed items from previous OCR job
+  python run_ocr.py --resume-from 2026-01-02_00-33-11 \\
+    --source-job-id 2026-01-02_00-28-28
   
-  # With custom config files
+  # Force rerun (ignore existing results)
   python run_ocr.py --citekeys dagz_v01 \\
-    --output data/analytics/ocr \\
-    --pipeline-config pipeline_config.json \\
-    --predict-params predict_params.json
+    --source-job-id 2026-01-02_00-28-28 \\
+    --force-rerun
+  
+  # With options
+  python run_ocr.py --citekeys dagz_v01 dagz_v02 \\
+    --source-job-id 2026-01-02_00-28-28 \\
+    --batch-pages 200 \\
+    --extract-images
         """
     )
 
-    # Make citekeys and input-dir mutually exclusive
+    # Standardized input group
     input_group = parser.add_mutually_exclusive_group(required=True)
-    
-    input_group.add_argument(
-        "--citekeys",
-        nargs="+",
-        help="Citekeys to process (e.g., dagz_v01 dagz_v02)"
-    )
-    
     input_group.add_argument(
         "--input",
         type=str,
         help="Input: directory of PDFs or path to single PDF file"
     )
+    input_group.add_argument(
+        "--citekeys",
+        nargs="+",
+        help="Explicit list of citekeys to process (must exist in B2)"
+    )
+    input_group.add_argument(
+        "--resume-from",
+        type=str,
+        help="Resume failed citekeys from previous OCR job ID (e.g., '2026-01-02_00-33-11')"
+    )
+
+    # Required for lineage tracking
+    parser.add_argument(
+        "--source-job-id",
+        type=str,
+        help="Explicit upload job ID from upload_pdfs.py (REQUIRED unless resuming). "
+             "Never use 'latest' - use explicit ID like '2026-01-02_00-28-28'"
+    )
 
     parser.add_argument(
         "--output",
         default="data/analytics/ocr",
-        help="Base directory for OCR outputs (default: data/analytics/ocr, will create <citekey>/<job_id>/)"
+        help="Base directory for OCR outputs (default: data/analytics/ocr)"
     )
 
     parser.add_argument(
@@ -1096,10 +1105,9 @@ Examples:
     )
 
     parser.add_argument(
-        "--source-job-id",
-        default=None,
-        help="(Optional) Job ID from upload_pdfs_to_b2 for lineage tracking. "
-             "Use 'latest' to auto-detect the most recent upload job."
+        "--force-rerun",
+        action="store_true",
+        help="Reprocess even if results already exist"
     )
 
     parser.add_argument(
@@ -1124,6 +1132,29 @@ Examples:
 
     args = parser.parse_args()
 
+    # Validate source-job-id (required unless resuming with auto-detect)
+    if args.resume_from:
+        # When resuming, can auto-detect source_job_id from resume metadata
+        if args.source_job_id:
+            try:
+                validate_job_id(args.source_job_id, "--source-job-id")
+            except ValueError as e:
+                print(f"✗ {e}")
+                sys.exit(1)
+    else:
+        # Normal run requires explicit source_job_id
+        if not args.source_job_id:
+            print("✗ --source-job-id is required")
+            print("   Provide the job ID from upload_pdfs.py (e.g., '2026-01-02_00-28-28')")
+            print("   To find latest: ls -t data/sources/job_metadata/ | head -1")
+            sys.exit(1)
+        
+        try:
+            validate_job_id(args.source_job_id, "--source-job-id")
+        except ValueError as e:
+            print(f"✗ {e}")
+            sys.exit(1)
+
     # Resolve input files and build citekey list
     file_mapping = {}  # citekey -> local file path
     
@@ -1139,103 +1170,66 @@ Examples:
         except ValueError as e:
             print(f"✗ Error: {e}")
             sys.exit(1)
+    
+    elif args.resume_from:
+        # Auto-detect source_job_id from resume metadata if not provided
+        if not args.source_job_id:
+            from etl_metadata import get_step_metadata
+            prev_metadata = get_step_metadata("ocr", args.resume_from, output_dir=Path(args.output))
+            if not prev_metadata:
+                print(f"✗ Cannot find metadata for resume job {args.resume_from}")
+                sys.exit(1)
+            
+            args.source_job_id = prev_metadata.get("source_job_id")
+            if not args.source_job_id:
+                print(f"✗ Resume job {args.resume_from} has no source_job_id in metadata")
+                sys.exit(1)
+            
+            if not args.quiet:
+                print(f"📦 Auto-detected source_job_id: {args.source_job_id}")
+        
+        # Get failed citekeys from previous job
+        try:
+            citekeys = get_failed_citekeys("ocr", args.resume_from, args.source_job_id, Path(args.output))
+            if not citekeys:
+                print(f"✓ No failed citekeys to resume from job {args.resume_from}")
+                sys.exit(0)
+        except ValueError as e:
+            print(f"✗ {e}")
+            sys.exit(1)
+    
     else:
         citekeys = args.citekeys
 
     # ============================================================
-    # Validate citekeys exist in B2
+    # Store source job ID for lineage tracking
     # ============================================================
     
-    if not args.quiet:
-        print("=" * 70)
-        print("🚀 PaddleOCR-VL ETL Pipeline (B2 → Runpod → Local)")
-        print("=" * 70)
-        print(f"Validating {len(citekeys)} citekey(s) in B2...")
-        print()
+    # source_job_id is already validated and set
+    source_job_ids = {ck: args.source_job_id for ck in citekeys}
     
-    validated_citekeys = []
-    for citekey in citekeys:
-        if validate_citekey_in_b2(citekey):
-            validated_citekeys.append(citekey)
-            if not args.quiet:
-                print(f"  ✓ {citekey}")
-        else:
-            print(f"  ✗ {citekey} - NOT FOUND in B2 (must be uploaded first via upload_pdfs_to_b2.py)")
-    
-    if not validated_citekeys:
-        print("\n✗ No valid citekeys found in B2. Please run upload_pdfs_to_b2.py first.")
-        sys.exit(1)
-    
-    if len(validated_citekeys) < len(citekeys):
-        print(f"\n⚠️  Proceeding with {len(validated_citekeys)} valid citekey(s) (skipped {len(citekeys) - len(validated_citekeys)})")
-    
-    citekeys = validated_citekeys
-    
-    if not args.quiet:
-        print()
-
-    # ============================================================
-    # Handle source job ID - auto-detect per-citekey
-    # ============================================================
-    
-    source_job_ids = {}  # citekey -> source_job_id (can be None)
-    
-    if args.source_job_id:
-        # User explicitly provided a source job ID
-        if args.source_job_id == "latest":
-            latest_job = get_latest_source_job_id()
-            if latest_job:
-                if not args.quiet:
-                    print(f"📦 Auto-detected latest source job: {latest_job}")
-                # Use this job for all citekeys
-                source_job_ids = {ck: latest_job for ck in citekeys}
-            else:
-                logger.warning("No source job metadata found in data/sources/job_metadata")
-                source_job_ids = {ck: None for ck in citekeys}
-        else:
-            # Use the explicitly provided job ID for all citekeys
-            source_job_ids = {ck: args.source_job_id for ck in citekeys}
-    else:
-        # Auto-detect per-citekey from source metadata
-        if not args.quiet:
-            print("🔍 Auto-detecting source job IDs from citekey metadata...")
-        
-        for citekey in citekeys:
-            detected_job_id = find_source_job_for_citekey(citekey)
-            source_job_ids[citekey] = detected_job_id
-            
-            if detected_job_id and not args.quiet:
-                print(f"  {citekey}: {detected_job_id}")
-            elif not args.quiet and not detected_job_id:
-                print(f"  {citekey}: (not found in source metadata)")
-    
-    # Count how many citekeys have source job IDs
-    citekeys_with_lineage = sum(1 for sjid in source_job_ids.values() if sjid is not None)
-    
-    if not args.quiet:
-        if citekeys_with_lineage > 0:
-            print(f"  Lineage: {citekeys_with_lineage}/{len(citekeys)} citekey(s) mapped to source job(s)")
-        else:
-            print("  (No source job IDs detected - lineage tracking disabled)")
-        print()
-
     # Create job ID (timestamp-based)
     job_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     
     # Get file sizes and actual page counts for batching
     if not args.quiet:
-        print("=" * 70)
-        print(f"📊 File Info")
+        print("\n" + "=" * 70)
+        print("🚀 PaddleOCR-VL ETL Pipeline (Step 2: OCR)")
         print("=" * 70)
         print(f"Job ID: {job_id}")
-        print(f"Output base: {args.output}")
+        print(f"Source Job ID: {args.source_job_id}")
+        if args.resume_from:
+            print(f"Resuming from: {args.resume_from}")
         print(f"Citekeys: {len(citekeys)}")
+        print(f"Output: {args.output}")
+        print("=" * 70)
         print()
         
         # Show appropriate source
         if args.input:
             print(f"Reading file info from local directory: {args.input}")
         else:
+            print(f"Validating {len(citekeys)} citekey(s) in B2...")
             print("Fetching B2 file info (sizes and page counts)...")
     
     citekeys_with_pages = []

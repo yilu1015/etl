@@ -7,9 +7,25 @@ ETL Pipeline Step 3: Upload to B2
 - Processing: Upload to B2 analytics bucket
 - Output: Results available via B2 for downstream processing
 
+Lineage Chain:
+  upload → run_ocr (source) → sync_ocr (this step) → parse_structure
+
 Usage:
-  python sync_ocr_to_b2.py --job-id latest
-  python sync_ocr_to_b2.py --job-id 2025-12-31_21-29-56 --skip-images
+  # Sync entire OCR job
+  python sync_ocr.py --source-job-id 2026-01-02_00-33-11
+  
+  # Sync specific citekeys only
+  python sync_ocr.py --citekeys dagz_v01 dagz_v02 \\
+    --source-job-id 2026-01-02_00-33-11
+  
+  # Resume failed syncs
+  python sync_ocr.py --resume-from 2026-01-02_00-58-42 \\
+    --source-job-id 2026-01-02_00-33-11
+  
+  # Skip images (faster)
+  python sync_ocr.py --source-job-id 2026-01-02_00-33-11 --skip-images
+
+⚠️  IMPORTANT: Always use explicit --source-job-id (OCR job), never "latest"
 """
 
 import argparse
@@ -23,7 +39,11 @@ import boto3
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-from etl_metadata import update_central_registry
+from etl_metadata import (
+    save_step_metadata, validate_job_id, get_failed_citekeys, get_step_metadata,
+    expand_citekey_patterns, preview_pipeline_run, print_dry_run_summary,
+    filter_citekeys_to_process
+)
 
 # Load environment variables
 load_dotenv()
@@ -49,6 +69,8 @@ B2_ANALYTICS_REGION = os.getenv("B2_ANALYTICS_REGION")
 B2_ANALYTICS_ENDPOINT_URL = os.getenv("B2_ANALYTICS_ENDPOINT_URL")
 B2_ANALYTICS_BUCKET = os.getenv("B2_ANALYTICS_BUCKET")
 
+ANALYTICS_ROOT = Path(__file__).parent.parent / "data" / "analytics"
+
 
 def get_b2_client():
     """Initialize B2 S3 client."""
@@ -61,104 +83,36 @@ def get_b2_client():
     )
 
 
-def resolve_job_id(job_id: str, local_dir: Path) -> str:
-    """
-    Resolve job_id, handling "latest" symlink.
-    
-    If job_id is "latest", resolves the metadata latest.json symlink to get
-    the real job_id (timestamp). This is more reliable than checking individual
-    citekey directories since single-file runs only update one citekey.
-    
-    Args:
-        job_id: Job ID or "latest"
-        local_dir: Local OCR results directory
-    
-    Returns:
-        Real job_id (timestamp string, e.g., "2025-12-31_21-29-56")
-    
-    Raises:
-        ValueError: If job_id cannot be resolved
-    """
-    if job_id != "latest":
-        return job_id
-    
-    # Check metadata latest.json symlink (most reliable - always updated)
-    metadata_dir = local_dir / "job_metadata"
-    latest_metadata_link = metadata_dir / "latest.json"
-    
-    if latest_metadata_link.is_symlink():
-        # Symlink target is like "2025-12-31_21-29-56.json"
-        target_name = latest_metadata_link.resolve().name
-        # Remove .json extension to get job_id
-        real_job_id = target_name.replace(".json", "")
-        logger.info(f"Resolved 'latest.json' symlink → {real_job_id}")
-        return real_job_id
-    
-    # Fallback: find most recent metadata file
-    if metadata_dir.exists():
-        metadata_files = sorted(metadata_dir.glob("*.json"))
-        # Filter out "latest.json" if it exists as a regular file
-        metadata_files = [f for f in metadata_files if f.name != "latest.json"]
-        
-        if metadata_files:
-            real_job_id = metadata_files[-1].stem  # filename without extension
-            logger.info(f"No 'latest.json' symlink found, using most recent metadata: {real_job_id}")
-            return real_job_id
-    
-    # Final fallback: check citekey directories
-    citekey_dirs = [d for d in local_dir.iterdir() 
-                    if d.is_dir() and d.name != "job_metadata"]
-    
-    if not citekey_dirs:
-        raise ValueError("No citekey directories or metadata files found to resolve 'latest'")
-    
-    first_citekey_dir = citekey_dirs[0]
-    latest_link = first_citekey_dir / "latest"
-    
-    if latest_link.is_symlink():
-        real_job_id = latest_link.resolve().name
-        logger.info(f"Resolved citekey 'latest' symlink → {real_job_id}")
-        return real_job_id
-    
-    # Last resort: use most recent job directory
-    job_dirs = [d for d in first_citekey_dir.iterdir() 
-               if d.is_dir() and d.name != "latest"]
-    
-    if not job_dirs:
-        raise ValueError(f"No job directories found in {first_citekey_dir}")
-    
-    real_job_id = sorted(job_dirs)[-1].name
-    logger.info(f"No symlinks found, using most recent directory: {real_job_id}")
-    return real_job_id
-
-
-def sync_job_to_b2(job_id: str, local_dir: Path, skip_images: bool = False, quiet: bool = False):
+def sync_job_to_b2(
+    source_job_id: str,
+    local_dir: Path,
+    citekeys: Optional[List[str]] = None,
+    skip_images: bool = False,
+    force_rerun: bool = False,
+    quiet: bool = False
+):
     """
     Sync OCR results to B2.
     
-    If job_id is "latest", resolves the symlink to get the real job_id.
-    
     Args:
-        job_id: Job ID (timestamp) or "latest" to sync latest job
-        local_dir: Local OCR results directory (e.g., data/analytics/ocr)
+        source_job_id: OCR job ID to sync (explicit, no "latest")
+        local_dir: Local OCR results directory
+        citekeys: Optional list of specific citekeys to sync
         skip_images: Skip uploading image files
+        force_rerun: Reupload even if files already exist
         quiet: Suppress progress output
     """
     s3_client = get_b2_client()
     
-    # Resolve job_id (handles "latest")
-    try:
-        real_job_id = resolve_job_id(job_id, local_dir)
-    except ValueError as e:
-        logger.error(f"Failed to resolve job_id: {e}")
-        return
+    # Validate source_job_id
+    validate_job_id(source_job_id, "--source-job-id (OCR)")
     
     # Sync job metadata
     metadata_dir = local_dir / "job_metadata"
     if metadata_dir.exists():
-        metadata_file = metadata_dir / f"{real_job_id}.json"
+        metadata_file = metadata_dir / f"{source_job_id}.json"
         if metadata_file.exists():
-            s3_key = f"ocr/job_metadata/{real_job_id}.json"
+            s3_key = f"ocr/job_metadata/{source_job_id}.json"
             try:
                 s3_client.upload_file(str(metadata_file), B2_ANALYTICS_BUCKET, s3_key)
                 logger.info(f"✓ Uploaded {s3_key}")
@@ -169,13 +123,35 @@ def sync_job_to_b2(job_id: str, local_dir: Path, skip_images: bool = False, quie
     else:
         logger.warning(f"Job metadata directory not found: {metadata_dir}")
     
-    # Find all citekey directories
-    citekey_dirs = [d for d in local_dir.iterdir() 
-                    if d.is_dir() and d.name != "job_metadata"]
+    # Find all citekey directories (or filter by provided list)
+    if citekeys:
+        citekey_dirs = [local_dir / ck for ck in citekeys if (local_dir / ck).is_dir()]
+    else:
+        citekey_dirs = [d for d in local_dir.iterdir() 
+                        if d.is_dir() and d.name != "job_metadata"]
     
     if not citekey_dirs:
         logger.warning(f"No citekey directories found in {local_dir}")
         return
+    
+    # Filter citekeys if not force_rerun
+    if not force_rerun:
+        all_citekeys = [d.name for d in citekey_dirs]
+        to_process, skipped = filter_citekeys_to_process(
+            "sync_ocr",
+            all_citekeys,
+            source_job_id,
+            force_rerun=False,
+            output_dir=local_dir.parent / "sync_ocr"
+        )
+        
+        if skipped:
+            logger.info(f"⊘ Skipping {len(skipped)} citekeys with existing results")
+            citekey_dirs = [local_dir / ck for ck in to_process]
+        
+        if not citekey_dirs:
+            logger.info("✓ All citekeys already synced. Use --force-rerun to re-upload.")
+            return
     
     # Sync results for each citekey
     total_uploaded = 0
@@ -183,7 +159,7 @@ def sync_job_to_b2(job_id: str, local_dir: Path, skip_images: bool = False, quie
     
     for citekey_dir in tqdm(citekey_dirs, unit="citekey", disable=quiet, desc="Syncing citekeys"):
         citekey = citekey_dir.name
-        result_dir = citekey_dir / real_job_id
+        result_dir = citekey_dir / source_job_id
         
         if not result_dir.exists():
             logger.debug(f"Result directory not found for {citekey}: {result_dir}")
@@ -193,7 +169,7 @@ def sync_job_to_b2(job_id: str, local_dir: Path, skip_images: bool = False, quie
         # Upload OCR result JSON
         json_file = result_dir / f"{citekey}.json"
         if json_file.exists():
-            s3_key = f"ocr/{citekey}/{real_job_id}/{citekey}.json"
+            s3_key = f"ocr/{citekey}/{source_job_id}/{citekey}.json"
             try:
                 s3_client.upload_file(str(json_file), B2_ANALYTICS_BUCKET, s3_key)
                 total_uploaded += 1
@@ -205,7 +181,7 @@ def sync_job_to_b2(job_id: str, local_dir: Path, skip_images: bool = False, quie
         if not skip_images:
             for img_dir in result_dir.glob("page_*_images"):
                 for img_file in img_dir.glob("*.png"):
-                    s3_key = f"ocr/{citekey}/{real_job_id}/{img_dir.name}/{img_file.name}"
+                    s3_key = f"ocr/{citekey}/{source_job_id}/{img_dir.name}/{img_file.name}"
                     try:
                         s3_client.upload_file(str(img_file), B2_ANALYTICS_BUCKET, s3_key)
                         total_uploaded += 1
@@ -215,41 +191,74 @@ def sync_job_to_b2(job_id: str, local_dir: Path, skip_images: bool = False, quie
     
     logger.info(f"✓ Sync complete: {total_uploaded} uploaded, {total_skipped} skipped")
     
-    # Update central registry
+    # Save sync_ocr metadata
+    from datetime import datetime
+    sync_job_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    
     sync_metadata = {
         "status": "completed",
+        "source_job_id": source_job_id,  # OCR job ID
         "files_uploaded": total_uploaded,
         "files_skipped": total_skipped,
         "b2_bucket": B2_ANALYTICS_BUCKET,
+        "citekeys": {
+            "total": len(citekey_dirs),
+            "successful": len(citekey_dirs) - total_skipped,
+            "failed": total_skipped,
+            "list": sorted([d.name for d in citekey_dirs])
+        }
     }
-    update_central_registry("sync_ocr", real_job_id, sync_metadata)
-    logger.info(f"Updated central registry with sync_ocr step for job {real_job_id}")
+    
+    save_step_metadata("sync_ocr", sync_job_id, sync_metadata, output_dir=ANALYTICS_ROOT / "sync_ocr")
+    logger.info(f"Saved sync_ocr metadata with job_id: {sync_job_id}")
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Sync OCR results to B2",
+        description="Sync OCR results to B2 (ETL Step 3: Sync)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Sync latest results for all citekeys
-  python sync_ocr_to_b2.py --job-id latest
+  # Sync entire OCR job
+  python sync_ocr.py --source-job-id 2026-01-02_00-33-11
   
-  # Sync specific job ID
-  python sync_ocr_to_b2.py --job-id 2025-12-31_21-29-56
+  # Sync specific citekeys only
+  python sync_ocr.py --citekeys dagz_v01 dagz_v02 \\
+    --source-job-id 2026-01-02_00-33-11
   
-  # Sync without images (faster)
-  python sync_ocr_to_b2.py --job-id latest --skip-images
+  # Resume failed syncs
+  python sync_ocr.py --resume-from 2026-01-02_00-58-42 \\
+    --source-job-id 2026-01-02_00-33-11
   
-  # Quiet mode
-  python sync_ocr_to_b2.py --job-id latest --quiet
+  # Skip images (faster)
+  python sync_ocr.py --source-job-id 2026-01-02_00-33-11 --skip-images
         """
     )
     
+    # Standardized input group
+    input_group = parser.add_mutually_exclusive_group()
+    input_group.add_argument(
+        "--citekeys",
+        nargs="+",
+        help="Explicit list of citekeys to sync"
+    )
+    input_group.add_argument(
+        "--resume-from",
+        type=str,
+        help="Resume failed citekeys from previous sync_ocr job ID"
+    )
+    input_group.add_argument(
+        "--pattern",
+        nargs="+",
+        help="Citekey patterns with wildcards (e.g., 'dagz_v*' 'mzdnp_y200*'). "
+             "Only _v* and _y* patterns supported."
+    )
+    
     parser.add_argument(
-        "--job-id",
-        default="latest",
-        help="Job ID to sync (e.g., 2025-12-31_21-29-56) or 'latest' (default: latest)"
+        "--source-job-id",
+        type=str,
+        required=True,
+        help="Explicit OCR job ID to sync (e.g., '2026-01-02_00-33-11'). Never use 'latest'."
     )
     parser.add_argument(
         "--input",
@@ -267,6 +276,17 @@ Examples:
         action="store_true",
         help="Suppress progress output"
     )
+    parser.add_argument(
+        "--force-rerun",
+        action="store_true",
+        help="Reupload even if files already exist in B2"
+    )
+    
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Preview what would be synced without actually uploading"
+    )
     
     args = parser.parse_args()
     
@@ -275,18 +295,80 @@ Examples:
         logger.error(f"Input directory not found: {args.input}")
         return
     
+    # Validate job IDs
+    try:
+        validate_job_id(args.source_job_id, "--source-job-id (OCR)")
+        if args.resume_from:
+            validate_job_id(args.resume_from, "--resume-from")
+    except ValueError as e:
+        logger.error(str(e))
+        return
+    
+    # Resolve citekeys
+    citekeys = None
+    if args.resume_from:
+        try:
+            citekeys = get_failed_citekeys("sync_ocr", args.resume_from, args.source_job_id, args.input.parent / "sync_ocr")
+            if not citekeys:
+                print(f"✓ No failed citekeys to resume from job {args.resume_from}")
+                return
+        except ValueError as e:
+            logger.error(str(e))
+            return
+    elif args.pattern:
+        try:
+            citekeys = expand_citekey_patterns(
+                args.pattern,
+                source_job_id=args.source_job_id
+            )
+            logger.info(f"📋 Expanded patterns to {len(citekeys)} citekeys")
+        except ValueError as e:
+            logger.error(str(e))
+            return
+    elif args.citekeys:
+        citekeys = args.citekeys
+    
+    # Dry run preview
+    if args.dry_run:
+        # Get all available citekeys from local directory
+        all_citekeys = citekeys if citekeys else [
+            d.name for d in args.input.iterdir() 
+            if d.is_dir() and d.name != "job_metadata"
+        ]
+        
+        preview = preview_pipeline_run(
+            step_name="sync_ocr",
+            citekeys=all_citekeys,
+            source_job_id=args.source_job_id,
+            force_rerun=args.force_rerun,
+            output_dir=args.input.parent / "sync_ocr"
+        )
+        print_dry_run_summary(preview)
+        return
+    
     # Print summary
     print("\n" + "=" * 70)
-    print("📤 B2 OCR Results Sync")
+    print("📤 B2 OCR Results Sync (ETL Step 3)")
     print("=" * 70)
-    print(f"  Job ID: {args.job_id}")
+    print(f"  Source Job ID (OCR): {args.source_job_id}")
+    if args.resume_from:
+        print(f"  Resuming from: {args.resume_from}")
+    if citekeys:
+        print(f"  Citekeys: {len(citekeys)}")
     print(f"  Local dir: {args.input}")
     print(f"  B2 bucket: {B2_ANALYTICS_BUCKET}")
     print(f"  Skip images: {args.skip_images}")
     print("=" * 70 + "\n")
     
     # Sync to B2
-    sync_job_to_b2(args.job_id, args.input, args.skip_images, args.quiet)
+    sync_job_to_b2(
+        args.source_job_id,
+        args.input,
+        citekeys,
+        args.skip_images,
+        args.force_rerun,
+        args.quiet
+    )
 
 
 if __name__ == "__main__":

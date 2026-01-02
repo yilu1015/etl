@@ -7,20 +7,30 @@ This script analyzes OCR JSON output to detect:
 2. Table of Contents (TOC): Detects TOC boundaries with inference
 
 Job ID Lineage:
-  OCR (source) → Sync_OCR (processes OCR) → Parse_Structure (analyzes structure)
-                                                    ↑
-                                            Uses sync_ocr job_id as source
+  upload → run_ocr → sync_ocr (source) → parse_structure (this step)
 
 Usage:
-  python parse_structure.py --input data/analytics/ocr
-  python parse_structure.py --input data/analytics/ocr/dwgz1992 --sync-job-id 2026-01-02_00-58-42
-  python parse_structure.py --input data/analytics/ocr --ocr-job-id 2026-01-02_00-33-11
+  # Process specific citekeys
+  python parse_structure.py --citekeys dagz_v01 dagz_v02 \\
+    --source-job-id 2026-01-02_00-58-42
+  
+  # Use wildcard patterns
+  python parse_structure.py --pattern "dagz_v*" \\
+    --source-job-id 2026-01-02_00-58-42
+  
+  # Resume failed items
+  python parse_structure.py --resume-from 2026-01-02_11-32-58 \\
+    --source-job-id 2026-01-02_00-58-42
+  
+  # Dry run preview
+  python parse_structure.py --pattern "dagz_v*" \\
+    --source-job-id 2026-01-02_00-58-42 --dry-run
+  
+  # Force rerun
+  python parse_structure.py --citekeys dagz_v01 \\
+    --source-job-id 2026-01-02_00-58-42 --force-rerun
 
-⚠️  IMPORTANT: Always use explicit job IDs, never use "latest" or symlinks for source job IDs:
-   ✅ GOOD:  --sync-job-id 2026-01-02_00-58-42
-   ✅ GOOD:  --ocr-job-id 2026-01-02_00-33-11
-   ❌ BAD:   --sync-job-id latest           (ambiguous, changes over time)
-   ❌ BAD:   --ocr-job-id $(readlink ...)   (fragile, breaks if symlink changes)
+⚠️  IMPORTANT: Always use explicit --source-job-id (sync_ocr job), never "latest"
 
 Output Structure:
   data/analytics/parse_structure/
@@ -40,13 +50,19 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, Union
+from typing import List, Tuple, Optional, Union, Dict
 from datetime import datetime
 import argparse
 import sys
 import logging
 import re
 from difflib import SequenceMatcher
+
+from etl_metadata import (
+    save_step_metadata, validate_job_id, get_failed_citekeys,
+    expand_citekey_patterns, preview_pipeline_run, print_dry_run_summary,
+    get_step_metadata, filter_citekeys_to_process
+)
 
 # ============================================================================
 # LOGGING
@@ -797,47 +813,72 @@ def parse_structure_step(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Parse document structure from OCR results",
+        description="Parse document structure from OCR results (ETL Step 4)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Analyze all OCR files with explicit sync_ocr job ID
-  python parse_structure.py --input data/analytics/ocr --sync-job-id 2026-01-02_00-58-42
+  # Process all citekeys from sync_ocr job (auto-discover)
+  python parse_structure.py --source-job-id 2026-01-02_16-13-33
   
-  # Analyze specific citekey with OCR job ID lookup
-  python parse_structure.py --input data/analytics/ocr/dwgz1992 \\
-                            --ocr-job-id 2026-01-02_00-33-11
+  # Process specific citekeys
+  python parse_structure.py --citekeys dagz_v01 dagz_v02 \\
+    --source-job-id 2026-01-02_00-58-42
   
-  # Analyze single file
-  python parse_structure.py --input data/analytics/ocr/dwgz1992/2026-01-02_00-33-11/dwgz1992.json \\
-                            --sync-job-id 2026-01-02_00-58-42
+  # Use wildcard patterns
+  python parse_structure.py --pattern "dagz_v*" \\
+    --source-job-id 2026-01-02_00-58-42
+  
+  # Resume failed items
+  python parse_structure.py --resume-from 2026-01-02_11-32-58 \\
+    --source-job-id 2026-01-02_00-58-42
+  
+  # Dry run preview
+  python parse_structure.py --source-job-id 2026-01-02_16-13-33 --dry-run
+  
+  # Force rerun with new parameters
+  python parse_structure.py --citekeys dagz_v01 \\
+    --source-job-id 2026-01-02_00-58-42 --force-rerun
 
-⚠️  IMPORTANT: Always use explicit job IDs, never use "latest"
-  ✅ GOOD:  --sync-job-id 2026-01-02_00-58-42
-  ❌ BAD:   --sync-job-id latest
-
-Symlinks in output:
-  ✅ Safe: Reading from data/analytics/parse_structure/{citekey}/latest/
-  ❌ Unsafe: Using symlink as source_job_id (use explicit job ID instead)
+⚠️  IMPORTANT: Always use explicit --source-job-id (sync_ocr job), never "latest"
         """)
     
-    parser.add_argument(
-        "--input",
+    # Standardized input group (NOW OPTIONAL)
+    input_group = parser.add_mutually_exclusive_group(required=False)
+    input_group.add_argument(
+        "--citekeys",
+        nargs="+",
+        help="Explicit list of citekeys to process"
+    )
+    input_group.add_argument(
+        "--pattern",
+        nargs="+",
+        help="Citekey patterns with wildcards (e.g., 'dagz_v*' 'mzdnp_y200*'). "
+             "Only _v* and _y* patterns supported."
+    )
+    input_group.add_argument(
+        "--resume-from",
         type=str,
-        default="data/analytics/ocr",
-        help="Path to OCR JSON file(s) or directory (default: data/analytics/ocr)"
+        help="Resume failed citekeys from previous parse_structure job ID"
+    )
+    
+    # Required source job ID
+    parser.add_argument(
+        "--source-job-id",
+        type=str,
+        required=True,
+        help="Explicit sync_ocr job ID (e.g., '2026-01-02_00-58-42'). Never use 'latest'."
+    )
+    
+    # Optional flags
+    parser.add_argument(
+        "--force-rerun",
+        action="store_true",
+        help="Reprocess even if results already exist"
     )
     parser.add_argument(
-        "--ocr-job-id",
-        type=str,
-        help="Explicit OCR job ID (e.g., '2026-01-02_00-33-11'). "
-             "Used to find corresponding sync_ocr job_id. Never use 'latest'."
-    )
-    parser.add_argument(
-        "--sync-job-id",
-        type=str,
-        help="Explicit Sync_OCR job ID (e.g., '2026-01-02_00-58-42'). "
-             "Preferred over --ocr-job-id. Never use 'latest'."
+        "--dry-run",
+        action="store_true",
+        help="Preview what would be processed without actually running"
     )
     parser.add_argument(
         "--verbose",
@@ -850,12 +891,256 @@ Symlinks in output:
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
     
+    # Validate source job ID
     try:
-        parse_job_id, output_dir = parse_structure_step(
-            input_path=args.input,
-            ocr_job_id=args.ocr_job_id,
-            sync_job_id=args.sync_job_id
+        validate_job_id(args.source_job_id, "--source-job-id (sync_ocr)")
+        if args.resume_from:
+            validate_job_id(args.resume_from, "--resume-from")
+    except ValueError as e:
+        logger.error(str(e))
+        return 1
+    
+    # Resolve citekeys
+    if args.pattern:
+        try:
+            citekeys = expand_citekey_patterns(
+                args.pattern,
+                source_job_id=args.source_job_id
+            )
+            logger.info(f"📋 Expanded patterns to {len(citekeys)} citekeys")
+        except ValueError as e:
+            logger.error(str(e))
+            return 1
+    
+    elif args.resume_from:
+        try:
+            citekeys = get_failed_citekeys(
+                "parse_structure",
+                args.resume_from,
+                args.source_job_id,
+                ANALYTICS_ROOT / "parse_structure"
+            )
+            if not citekeys:
+                print(f"✓ No failed citekeys to resume from job {args.resume_from}")
+                return 0
+        except ValueError as e:
+            logger.error(str(e))
+            return 1
+    
+    elif args.citekeys:
+        citekeys = args.citekeys
+    
+    else:
+        # AUTO-DISCOVER: Load citekeys from sync_ocr job metadata
+        logger.info(f"📋 Auto-discovering citekeys from sync_ocr job {args.source_job_id}")
+        
+        try:
+            sync_metadata = get_step_metadata(
+                "sync_ocr", 
+                args.source_job_id, 
+                ANALYTICS_ROOT / "sync_ocr"
+            )
+            
+            if not sync_metadata:
+                logger.error(f"❌ Cannot find sync_ocr metadata for {args.source_job_id}")
+                logger.error(f"   Expected: {ANALYTICS_ROOT / 'sync_ocr' / 'job_metadata' / f'{args.source_job_id}.json'}")
+                return 1
+            
+            citekeys = sync_metadata.get("citekeys", {}).get("list", [])
+            
+            if not citekeys:
+                logger.error(f"❌ No citekeys found in sync_ocr job {args.source_job_id}")
+                return 1
+            
+            logger.info(f"✓ Found {len(citekeys)} citekeys: {citekeys}")
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to load sync_ocr metadata: {e}")
+            return 1
+    
+    # Dry run preview
+    if args.dry_run:
+        preview = preview_pipeline_run(
+            step_name="parse_structure",
+            citekeys=citekeys,
+            source_job_id=args.source_job_id,
+            force_rerun=args.force_rerun,
+            output_dir=ANALYTICS_ROOT / "parse_structure"
         )
+        print_dry_run_summary(preview)
+        return 0
+    
+    # Execute
+    try:
+        # Get OCR job ID from sync metadata
+        sync_metadata = get_step_metadata("sync_ocr", args.source_job_id, ANALYTICS_ROOT / "sync_ocr")
+        if not sync_metadata:
+            logger.error(f"Cannot find sync_ocr metadata for {args.source_job_id}")
+            return 1
+        
+        ocr_job_id = sync_metadata.get("source_job_id")
+        if not ocr_job_id:
+            logger.error(f"sync_ocr job {args.source_job_id} has no source_job_id")
+            return 1
+        
+        # Generate parse_structure job_id
+        parse_job_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        output_dir = ANALYTICS_ROOT / "parse_structure"
+        
+        logger.info(f"\n{'='*100}")
+        logger.info(f"📋 PARSE_STRUCTURE STEP")
+        logger.info(f"{'='*100}")
+        logger.info(f"Parse Job ID: {parse_job_id}")
+        logger.info(f"Source Job ID (sync_ocr): {args.source_job_id}")
+        logger.info(f"OCR Job ID: {ocr_job_id}")
+        logger.info(f"Citekeys: {len(citekeys)}")
+        logger.info(f"{'='*100}\n")
+        
+        # Filter citekeys if not force_rerun
+        if not args.force_rerun:
+            to_process, skipped = filter_citekeys_to_process(
+                "parse_structure",
+                citekeys,
+                args.source_job_id,
+                force_rerun=False,
+                output_dir=output_dir
+            )
+            
+            if skipped:
+                logger.info(f"⊘ Skipping {len(skipped)} citekeys with existing results")
+            
+            if not to_process:
+                logger.info("✓ All citekeys already processed. Use --force-rerun to reprocess.")
+                return 0
+            
+            citekeys = to_process
+        
+        # Find OCR files for each citekey
+        ocr_base = ANALYTICS_ROOT / "ocr"
+        parse_results = {}
+        
+        for citekey in citekeys:
+            ocr_file = ocr_base / citekey / ocr_job_id / f"{citekey}.json"
+            
+            if not ocr_file.exists():
+                logger.warning(f"⚠️  OCR file not found: {ocr_file}")
+                continue
+            
+            try:
+                logger.info(f"Analyzing {citekey}...", end=" ")
+                
+                # Perform analysis
+                body, _ = analyze_pagination(str(ocr_file))
+                toc = identify_toc(str(ocr_file), body) if body else None
+                
+                if body is None:
+                    logger.info("✗ No body detected")
+                    continue
+                
+                # Build structure output
+                structure = {
+                    "citekey": citekey,
+                    "source_job_id": args.source_job_id,
+                    "parse_structure_job_id": parse_job_id,
+                    "generated_at": datetime.now().isoformat() + "Z",
+                    "body": {
+                        "first_real_page": int(body.body_start_page),
+                        "last_real_page": int(body.body_end_page),
+                        "first_pdf_page": int(body.details["pdf_range"][0]),
+                        "last_pdf_page": int(body.details["pdf_range"][1]),
+                        "pdf_page_offset": int(body.offset),
+                        "confidence": float(body.confidence),
+                        "detection_quality": {
+                            "consistency_score": float(body.consistency_score),
+                            "position_consistency": float(body.position_consistency),
+                            "sequence_length": int(body.sequence_length),
+                            "gaps": [int(g) for g in body.gaps]
+                        }
+                    },
+                    "toc": {
+                        "first_real_page": int(toc.toc_first_page) if toc else None,
+                        "last_real_page": int(toc.toc_last_page) if toc else None,
+                        "first_pdf_page": int(toc.toc_first_pdf_page) if toc else None,
+                        "last_pdf_page": int(toc.toc_last_pdf_page) if toc else None,
+                        "pdf_page_offset": int(toc.toc_offset) if toc else None,
+                        "confidence": float(toc.confidence) if toc else None,
+                        "detection_quality": {
+                            "detection_method": toc.detection_method if toc else None,
+                            "start_detection_method": toc.toc_start_detection_method if toc else None,
+                            "start_confidence": float(toc.toc_start_confidence) if toc else None,
+                            "keyword_found": toc.keyword_found if toc else False,
+                            "keyword_pdf_page": int(toc.keyword_position) if toc and toc.keyword_position else None,
+                            "inferred_flags": toc.inferred_flags if toc else []
+                        }
+                    } if toc else None,
+                    "metadata": {
+                        "total_pdf_pages": "varies",
+                        "notes": f"Body: pages {body.body_start_page}–{body.body_end_page} (offset {body.offset:+d})"
+                    }
+                }
+                
+                parse_results[citekey] = structure
+                
+                toc_status = f"✓ {toc.toc_first_page}–{toc.toc_last_page}" if toc else "✗"
+                logger.info(f"Body {body.body_start_page}–{body.body_end_page} | TOC {toc_status}")
+                
+            except Exception as e:
+                logger.error(f"Error analyzing {citekey}: {e}")
+                continue
+        
+        # Save results
+        for citekey, structure in parse_results.items():
+            citekey_dir = output_dir / citekey / parse_job_id
+            citekey_dir.mkdir(parents=True, exist_ok=True)
+            
+            struct_file = citekey_dir / f"{citekey}.json"
+            with struct_file.open("w", encoding="utf-8") as f:
+                json.dump(structure, f, indent=2, ensure_ascii=False)
+            
+            # Create symlink
+            latest_link = output_dir / citekey / "latest"
+            if latest_link.exists() or latest_link.is_symlink():
+                latest_link.unlink()
+            latest_link.symlink_to(parse_job_id, target_is_directory=True)
+        
+        # Save metadata using etl_metadata
+        job_metadata = {
+            "status": "completed",
+            "source_job_id": args.source_job_id,
+            "citekeys": {
+                "total": len(citekeys),
+                "processed": len(parse_results),
+                "failed": len(citekeys) - len(parse_results),
+                "list": sorted(citekeys),
+                "failed_list": sorted(set(citekeys) - set(parse_results.keys()))
+            },
+            "quality_summary": {
+                "high_confidence": {
+                    "count": sum(1 for s in parse_results.values() if s["body"]["confidence"] >= 0.95),
+                    "threshold": 0.95
+                },
+                "with_inferences": {
+                    "count": sum(1 for s in parse_results.values() 
+                               if s["toc"] and s["toc"]["detection_quality"]["inferred_flags"]),
+                    "citekeys": [c for c, s in parse_results.items() 
+                               if s["toc"] and s["toc"]["detection_quality"]["inferred_flags"]]
+                }
+            },
+            "statistics": {
+                "avg_body_confidence": float(np.mean([s["body"]["confidence"] for s in parse_results.values()])) if parse_results else None,
+                "avg_toc_confidence": float(np.mean([s["toc"]["confidence"] for s in parse_results.values() if s["toc"]])) if any(s["toc"] for s in parse_results.values()) else None,
+                "total_pages_analyzed": sum(s["body"]["last_real_page"] - s["body"]["first_real_page"] + 1 
+                                           for s in parse_results.values())
+            }
+        }
+        
+        save_step_metadata("parse_structure", parse_job_id, job_metadata, output_dir=output_dir)
+        
+        logger.info(f"\n{'='*100}")
+        logger.info(f"✅ Parse_structure step complete")
+        logger.info(f"Documents processed: {len(parse_results)}/{len(citekeys)}")
+        logger.info(f"Output: {output_dir}")
+        logger.info(f"{'='*100}\n")
         
         print(f"\n✅ Success!")
         print(f"Parse Job ID: {parse_job_id}")
