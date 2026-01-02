@@ -1,0 +1,39 @@
+# ETL Workflows Configuration
+# Orchestration and scheduling for pipeline stages (future use)
+
+workflows:
+  ocr_pipeline:
+    stages:
+      - name: upload_pdfs
+        enabled: true
+        description: "Upload source PDFs to B2"
+      
+      - name: run_ocr
+        enabled: true
+        description: "Execute OCR processing"
+        depends_on: [upload_pdfs]
+      
+      - name: sync_results
+        enabled: true
+        description: "Synchronize OCR results to B2"
+        depends_on: [run_ocr]
+      
+      - name: extract_toc
+        enabled: false
+        description: "Extract table of contents (future)"
+        depends_on: [run_ocr]
+      
+      - name: segment_documents
+        enabled: false
+        description: "Segment documents (future)"
+        depends_on: [run_ocr]
+
+  error_handling:
+    retry_policy:
+      max_retries: 3
+      backoff_strategy: exponential
+      initial_delay_seconds: 5
+
+  notifications:
+    on_completion: false
+    on_error: false
