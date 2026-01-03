@@ -1,0 +1,278 @@
+# Configuration for document extraction from TOC using LLMs
+
+# Default extraction prompt template
+extraction_prompt: |
+  Extract document titles from the Chinese archival table of contents.
+  
+  **CRITICAL JSON FORMATTING RULES:**
+  - Only use language present in the source text; do not infer or add information.
+  - Output ONLY valid JSON. No markdown, no explanations.
+  - Escape all special characters in strings: \n, \t, \", \\
+  - Always use double quotes for strings, not single quotes
+  - Arrays must be valid JSON arrays: ["item1", "item2"]
+  - No trailing commas in arrays or objects
+  - Dates must be strings in ISO format: "YYYY-MM-DD"
+  - Numbers (page) should be integers without quotes
+  
+  
+  For each title entry, also extract:
+  
+  date: Publication or document date in ISO format:
+  - YYYY-MM-DD if full date is present  
+  - YYYY-MM if day is unknown  
+  - YYYY if only year is known
+  - Extract from date expressions such as（一九八〇年一月二十一日）
+  - If multiple dates appear, prefer the document writing or approval ("通过") date
+  - Ignore promulgation / publication dates ("公布""施行")
+  - Must be a valid JSON string or null: "1980-01-21" or null
+  
+  page: Page number where the document starts
+  - Usually appears in parentheses, e.g. ……(104) or ……（104）
+  - Extract as an integer (no quotes): 104
+  - May be null if not present
+  
+  references: Array of reference codes or document numbers
+  - Preserve original OCR text, including all bracket types: （）【】[]
+  - Multiple references should be separate array items
+  - Must be valid JSON array: ["ref1", "ref2"] or []
+  - Each reference must be a properly escaped string
+  
+  authors: List of personal authors explicitly associated with the document
+  - Extract only individual person names (e.g., 毛泽东, 刘少奇)
+  - Do NOT treat government organs, issuing bodies, newspapers as authors
+  - Must be valid JSON array: ["author1", "author2"] or []
+  - Each author must be a properly escaped string
+  
+  Structural rules:
+  - Each item with its own page number is a separate TOC entry
+  - "附" (attachment) items are independent entries if they have page numbers, but drop the "附" (attachment) designation and only keep the title
+  - Titles may span multiple lines; merge before extraction
+  - Skip duplicate entries with same title and page  
+
+# Examples for few-shot extraction
+examples:
+  - text: "中央组织部、民政部、公安部、国家劳动总局关于逐步解决职工夫妻长期两地分居问题的通知 中组发（1980）4号民发（1980）4号\n（1980年1月21日）……104"
+    extractions:
+      - extraction_text: "中央组织部、民政部、公安部、国家劳动总局关于逐步解决职工夫妻长期两地分居问题的通知"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1980-01-21" # ← String, not null
+          page: 104 # ← Integer, not string
+          references: ["中组发（1980）4号", "民发（1980）4号"] # ← Valid array
+          authors: [] # ← Empty array, not null
+
+  - text: "中共中央关于加强档案工作的决定\n（一九五九年）……(45)"
+    extractions:
+      - extraction_text: "中共中央关于加强档案工作的决定"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1959"
+          page: 45
+          references: [] # ← Show empty array explicitly
+          authors: [] # ← Show empty array explicitly
+
+  - text: "国家档案局关于档案管理规定 档发【1983】12号\n国档字[1983]第15号（一九八三年三月）……(127)"
+    extractions:
+      - extraction_text: "国家档案局关于档案管理规定"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1983-03"
+          page: 127
+          references: ["档发【1983】12号", "国档字[1983]第15号"]
+          authors: []
+
+  - text: "国家档案局关于档案室领导关系问题的解释和说明……（346）\n\n（一九六四年二月十八日）"
+    extractions:
+      - extraction_text: "国家档案局关于档案室领导关系问题的解释和说明"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1964-02-18"
+          page: 346
+          references: []
+          authors: []
+
+  - text: "为物价完全稳定而努力……(243)\n\n（一九五〇年六月十一日《人民日报》社论）"
+    extractions:
+      - extraction_text: "为物价完全稳定而努力"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-06-11"
+          page: 243
+          references: []
+          authors: []
+
+  - text: "中共中央关于手工业政策的指示……(247)\n\n（一九五〇年六月十二日）"
+    extractions:
+      - extraction_text: "中共中央关于手工业政策的指示"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-06-12"
+          page: 247
+          references: []
+          authors: []
+
+  - text: "政务院文化教育委员会关于中国科学院基本\n任务的指示……(249)\n\n（一九五〇年六月十四日）"
+    extractions:
+      - extraction_text: "政务院文化教育委员会关于中国科学院基本任务的指示"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-06-14"
+          page: 249
+          references: []
+          authors: []
+
+  - text: "目前经济形势和调整工商业、调整税收的\n措施……陈云（269）\n\n（一九五〇年六月十五日）"
+    extractions:
+      - extraction_text: "目前经济形势和调整工商业、调整税收的措施"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-06-15"
+          page: 269
+          references: []
+          authors: ["陈云"]
+
+  - text: "做一个完全的革命派……毛泽东（280）\n\n（一九五〇年六月二十三日）"
+    extractions:
+      - extraction_text: "做一个完全的革命派"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-06-23"
+          page: 280
+          references: []
+          authors: ["毛泽东"]
+
+  - text: "关于美国武装侵略中国领土台湾的声明……周恩来（284）\n\n（一九五〇年六月二十八日）"
+    extractions:
+      - extraction_text: "关于美国武装侵略中国领土台湾的声明"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-06-28"
+          page: 284
+          references: []
+          authors: ["周恩来"]
+
+  - text: "中华人民共和国工会法……(286)\n\n（一九五〇年六月二十八日中央人民政府\n委员会第八次会议通过，一九五〇年六月\n二十九日中央人民政府主席毛泽东发布命\n令公布施行）"
+    extractions:
+      - extraction_text: "中华人民共和国工会法"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-06-28"
+          page: 286
+          references: []
+          authors: []
+
+  - text: "附：学会管理企业……（92）\n\n（一九五〇年二月六日《人民日报》社论）"
+    extractions:
+      - extraction_text: "学会管理企业"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-02-06"
+          page: 92
+          references: []
+          authors: []
+
+# Default extraction parameters (apply to all models unless overridden)
+extraction_params:
+  extraction_passes: 2
+  max_workers: 10
+  max_char_buffer: 2500
+  batch_length: 1000
+  debug: false
+  fence_output: true
+  use_schema_constraints: true
+  max_tokens: 32000
+
+# Model configurations for extraction
+models:
+  qwen3_30b_instruct:
+    name: "Qwen/Qwen3-30B-A3B-Instruct-2507"
+    provider: "openai"
+    base_url: "https://router.huggingface.co/v1"
+    api_key_env: "HF_TOKEN"
+    timeout: 120.0
+    temperature: 0.0
+    params:
+    #extraction_overrides:  # ← Override2.5_flash specific settings
+    #  fence_output: true  # Only override this one    
+
+  qwen3_4b_instruct:
+    name: "Qwen/Qwen3-4B-Instruct-2507"
+    provider: "openai"
+    base_url: "https://router.huggingface.co/v1"
+    api_key_env: "HF_TOKEN"
+    timeout: 120.0
+    temperature: 0.0
+    params:
+    #extraction_overrides:  # ← Override specific settings
+    #  fence_output: true  # Only override this one     
+
+  gpt5_nano:
+    name: "gpt-5-nano"
+    provider: "openai"
+    base_url: "https://api.openai.com/v1"
+    api_key_env: "OPENAI_API_KEY"
+    timeout: 120.0
+    temperature: 1.0
+    params:
+      max_completion_tokens: 32000  # ← VALUE for this model (different param name)
+    #extraction_overrides:  # ← Override specific settings
+    #  fence_output: true  # Only override this one  
+
+  gpt5_mini:
+    name: "gpt-5-mini-2025-08-07"
+    provider: "openai"
+    base_url: "https://api.openai.com/v1"
+    api_key_env: "OPENAI_API_KEY"
+    timeout: 120.0
+    temperature: 1.0
+    params:
+      max_completion_tokens: 32000  # ← VALUE for this model (different param name)
+    #extraction_overrides:  # ← Override specific settings
+    #  fence_output: true  # Only override this one  
+
+  gemini2.5_flash:
+    name: "gemini-2.5-flash"
+    provider: "gemini"
+    api_key_env: "LANGEXTRACT_API_KEY"
+    timeout: 120.0
+    temperature: 0.0
+    #params:
+      #max_output_tokens: 8000  # ← VALUE for this model (yet another name)
+    extraction_overrides:
+      fence_output: false  # ← Disable markdown fencing for Gemini
+      use_schema_constraints: false  # ← Force strict JSON schema
+
+  gemini2.5_pro:
+    name: "gemini-2.5-pro"
+    provider: "gemini"
+    api_key_env: "LANGEXTRACT_API_KEY"
+    timeout: 120.0
+    temperature: 0.0
+    #params:
+      #max_output_tokens: 8000  # ← VALUE for this model (yet another name)
+    #extraction_overrides:  # ← Override specific settings      
+    extraction_overrides:
+      fence_output: false  # ← Disable markdown fencing for Gemini
+      use_schema_constraints: false  # ← Force strict JSON schema
+      max_char_buffer: 2000  # ← Reduce buffer to avoid token overflow
+
+# Parameter name mappings (for automatic translation)
+# This is just a reference - the actual values come from params above
+param_aliases:
+  max_tokens:
+    - max_tokens
+    - max_completion_tokens
+    - max_output_tokens
+  temperature:
+    - temperature
+    - temp
+
+# Output configuration
+output:
+  save_raw_text: true
+  save_reasoning: true
+  save_prompt: true
+  save_model_info: true
+  format: "json"
+  indent: 2  # This controls list formatting
+  ensure_ascii: false  # Preserve Chinese characters

@@ -28,6 +28,7 @@ data/temp/
 data/scratch/
 data/*.tmp
 tests/
+logs/
 
 # ============================================================
 # NOTEBOOKS (keep reference, ignore exploration)
