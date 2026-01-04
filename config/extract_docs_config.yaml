@@ -30,6 +30,7 @@ extraction_prompt: |
   - Usually appears in parentheses, e.g. ……(104) or ……（104）
   - Extract as an integer (no quotes): 104
   - May be null if not present
+  - Some title entries could be broken up by \n; look ahead to find the correct page number.
   
   references: Array of reference codes or document numbers
   - Preserve original OCR text, including all bracket types: （）【】[]
@@ -80,6 +81,16 @@ examples:
           page: 127
           references: ["档发【1983】12号", "国档字[1983]第15号"]
           authors: []
+
+  - text: "国家档案局关于转发《关于国家预算内基本建设投资全\n部由拨款改为贷款的暂行规定》及《1985年国家预算收支科目》有关部分的通知\n\n（一九八五年一月七日）……(380)\n\n"
+    extractions:
+      - extraction_text: "国家档案局关于转发《关于国家预算内基本建设投资全部由拨款改为贷款的暂行规定》及《1985年国家预算收支科目》有关部分的通知"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1985-01-07"
+          page: 380
+          references: []
+          authors: []          
 
   - text: "国家档案局关于档案室领导关系问题的解释和说明……（346）\n\n（一九六四年二月十八日）"
     extractions:
@@ -195,28 +206,27 @@ models:
     #extraction_overrides:  # ← Override2.5_flash specific settings
     #  fence_output: true  # Only override this one    
 
-  qwen3_4b_instruct:
-    name: "Qwen/Qwen3-4B-Instruct-2507"
+  ernie4.5_21b_thinking:
+    name: "baidu/ERNIE-4.5-21B-A3B-Thinking"
     provider: "openai"
     base_url: "https://router.huggingface.co/v1"
     api_key_env: "HF_TOKEN"
     timeout: 120.0
     temperature: 0.0
     params:
+    #extraction_overrides:  # ← Override2.5_flash specific settings
+    #  fence_output: true  # Only override this one    
+
+  #qwen3_4b_instruct:
+  #  name: "Qwen/Qwen3-4B-Instruct-2507"
+  #  provider: "openai"
+  #  base_url: "https://router.huggingface.co/v1"
+  #  api_key_env: "HF_TOKEN"
+  #  timeout: 120.0
+  #  temperature: 0.0
+  #  params:
     #extraction_overrides:  # ← Override specific settings
     #  fence_output: true  # Only override this one     
-
-  gpt5_nano:
-    name: "gpt-5-nano"
-    provider: "openai"
-    base_url: "https://api.openai.com/v1"
-    api_key_env: "OPENAI_API_KEY"
-    timeout: 120.0
-    temperature: 1.0
-    params:
-      max_completion_tokens: 32000  # ← VALUE for this model (different param name)
-    #extraction_overrides:  # ← Override specific settings
-    #  fence_output: true  # Only override this one  
 
   gpt5_mini:
     name: "gpt-5-mini-2025-08-07"
