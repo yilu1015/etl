@@ -1,0 +1,204 @@
+{
+  "last_updated": "2026-01-05T21:23:33.267577-05:00",
+  "total_jobs": 19,
+  "jobs": [
+    {
+      "job_id": "2026-01-02_00-33-11",
+      "step_id": "ocr",
+      "timestamp": "2026-01-02T00:55:12.379635",
+      "status": "completed",
+      "citekeys": [
+        "jgyl2011_v01",
+        "gwcl2003",
+        "dagz_v02",
+        "msgz1992",
+        "gbda1987",
+        "dwgz1992",
+        "dagz_v01"
+      ]
+    },
+    {
+      "job_id": "2026-01-02_00-33-11",
+      "step_id": "sync_ocr",
+      "timestamp": "2026-01-02T00:57:39.318078",
+      "status": "completed",
+      "citekeys": []
+    },
+    {
+      "job_id": "2026-01-02_11-32-58",
+      "step_id": "parse_structure",
+      "timestamp": "2026-01-02T11:33:01.907736",
+      "status": "completed",
+      "citekeys": [
+        "dagz_v01",
+        "dagz_v02",
+        "dwgz1992",
+        "gbda1987",
+        "gwcl2003",
+        "jgyl2011_v01",
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-02_16-13-33",
+      "step_id": "sync_ocr",
+      "timestamp": "2026-01-02T16:13:33.826337",
+      "status": "completed",
+      "citekeys": [
+        "dagz_v01",
+        "dagz_v02",
+        "dwgz1992",
+        "gbda1987",
+        "gwcl2003",
+        "jgyl2011_v01",
+        "msgz1992",
+        "test_v04"
+      ]
+    },
+    {
+      "job_id": "2026-01-02_16-30-20",
+      "step_id": "parse_structure",
+      "timestamp": "2026-01-02T16:30:20.090176",
+      "status": "completed",
+      "citekeys": [
+        "dagz_v01",
+        "dagz_v02",
+        "dwgz1992",
+        "gbda1987",
+        "gwcl2003",
+        "jgyl2011_v01",
+        "msgz1992",
+        "test_v04"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_12-35-38",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T12:35:38.548450",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_12-39-51",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T12:39:51.286483",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_12-40-16",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T12:58:46.242804",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_14-20-42",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T14:26:53.001265",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_15-22-30",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T15:23:59.221864",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_15-26-27",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T15:31:40.841766",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_15-34-01",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T15:38:03.793117",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_15-44-22",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T15:53:40.583450",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_16-20-15",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T16:24:17.328035",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_16-25-09",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T16:36:53.728238",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_16-42-27",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T16:48:40.703633",
+      "status": "completed",
+      "citekeys": [
+        "msgz1992"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_16-54-45",
+      "step_id": "extract_toc_titles",
+      "timestamp": "2026-01-03T17:02:00.544347",
+      "status": "completed",
+      "citekeys": [
+        "dagz_v02",
+        "jgyl2011_v01"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_17-17-06",
+      "step_id": "compare_toc_models",
+      "timestamp": "2026-01-03T17:17:08.526438",
+      "status": "completed",
+      "citekeys": [
+        "dagz_v02",
+        "jgyl2011_v01"
+      ]
+    },
+    {
+      "job_id": "2026-01-03_17-25-54",
+      "step_id": "compare_toc_models",
+      "timestamp": "2026-01-03T17:25:56.248812",
+      "status": "completed",
+      "citekeys": [
+        "dagz_v02",
+        "jgyl2011_v01"
+      ]
+    }
+  ]
+}

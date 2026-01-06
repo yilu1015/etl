@@ -1,0 +1,78 @@
+{
+  "job_id": "2026-01-02_00-33-11",
+  "timestamp": "2026-01-02T00:55:12.379293",
+  "source": {
+    "job_id": "2026-01-02_00-28-28",
+    "bucket": "cna-sources",
+    "endpoint_url": "https://s3.us-east-005.backblazeb2.com",
+    "citekeys": {
+      "total": 7,
+      "uploaded": 7,
+      "skipped": 0,
+      "list": [
+        "dagz_v01",
+        "dagz_v02",
+        "dwgz1992",
+        "gbda1987",
+        "gwcl2003",
+        "jgyl2011_v01",
+        "msgz1992"
+      ]
+    },
+    "checksums": {
+      "dagz_v01": "de9cc4ac77d489c905450b2a731ac369b78b0907e0d8313177c4c2111d45cfba",
+      "dagz_v02": "d9ce1577e90f184e5b53f7909c3800f1be95d9a49af055b180d5d8929479c6ea",
+      "dwgz1992": "cbd65ff2769f30aae5a6f948e09e594a5bdb59f6096e44416367bfc68e827a96",
+      "gbda1987": "431eee95f194a25788e0e1ad4132223190f4ecd1992c28de80d04dfa41061db4",
+      "gwcl2003": "2fb6a0376d96ac177a433e82602d3bb1780686daee0442ceb3e0673dbb23996a",
+      "jgyl2011_v01": "137be1d15a9989186d7a23ea014e52b86c16500c2940b3d7a213bde0183ce36b",
+      "msgz1992": "007df8a400218d94084478bd843c9570031b1c5621aa978ec94262b537ada3af"
+    }
+  },
+  "pipeline_steps": {
+    "ocr": {
+      "job_id": "2026-01-02_00-33-11",
+      "status": "completed",
+      "timestamp": "2026-01-02T00:55:12.379635",
+      "metadata_path": "ocr/job_metadata/2026-01-02_00-33-11.json",
+      "citekeys": {
+        "total": 7,
+        "successful": 7,
+        "failed": 0,
+        "list": [
+          "jgyl2011_v01",
+          "gwcl2003",
+          "dagz_v02",
+          "msgz1992",
+          "gbda1987",
+          "dwgz1992",
+          "dagz_v01"
+        ]
+      },
+      "source_job_id": "2026-01-02_00-28-28"
+    },
+    "sync_ocr": {
+      "job_id": "2026-01-02_00-33-11",
+      "status": "completed",
+      "timestamp": "2026-01-02T00:57:39.318078",
+      "metadata_path": "sync_ocr/job_metadata/2026-01-02_00-33-11.json",
+      "files_uploaded": 7,
+      "files_skipped": 1,
+      "b2_bucket": "cna-analytics"
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "ocr",
+      "job_id": "2026-01-02_00-33-11",
+      "timestamp": "2026-01-02T00:55:12.379643",
+      "status": "completed"
+    },
+    {
+      "step": "sync_ocr",
+      "job_id": "2026-01-02_00-33-11",
+      "timestamp": "2026-01-02T00:57:39.318107",
+      "status": "completed"
+    }
+  ]
+}

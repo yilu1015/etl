@@ -1,0 +1,530 @@
+{
+  "backup_date": "2026-01-05T21:17:23.096930-05:00",
+  "directories": [
+    "sources",
+    "analytics",
+    "sources/dagz",
+    "sources/test",
+    "sources/job_metadata",
+    "analytics/toc",
+    "analytics/job_metadata",
+    "analytics/segmentation",
+    "analytics/sync_ocr",
+    "analytics/job_registry",
+    "analytics/ocr",
+    "analytics/parse_structure",
+    "analytics/extract_toc_titles",
+    "analytics/toc_extracted",
+    "analytics/compare_toc_models",
+    "analytics/sync_ocr/job_metadata",
+    "analytics/ocr/jgyl2011_v01",
+    "analytics/ocr/gwcl2003",
+    "analytics/ocr/job_metadata",
+    "analytics/ocr/dagz_v02",
+    "analytics/ocr/msgz1992",
+    "analytics/ocr/gbda1987",
+    "analytics/ocr/dwgz1992",
+    "analytics/ocr/test_v04",
+    "analytics/ocr/dagz_v01",
+    "analytics/parse_structure/jgyl2011_v01",
+    "analytics/parse_structure/gwcl2003",
+    "analytics/parse_structure/job_metadata",
+    "analytics/parse_structure/dagz_v02",
+    "analytics/parse_structure/msgz1992",
+    "analytics/parse_structure/gbda1987",
+    "analytics/parse_structure/dwgz1992",
+    "analytics/parse_structure/dagz_v01",
+    "analytics/extract_toc_titles/jgyl2011_v01",
+    "analytics/extract_toc_titles/job_metadata",
+    "analytics/extract_toc_titles/dagz_v02",
+    "analytics/extract_toc_titles/msgz1992",
+    "analytics/toc_extracted/dagz_v01",
+    "analytics/compare_toc_models/jgyl2011_v01",
+    "analytics/compare_toc_models/job_metadata",
+    "analytics/compare_toc_models/dagz_v02",
+    "analytics/compare_toc_models/jgyl2011_v01/2026-01-03_17-17-06",
+    "analytics/compare_toc_models/jgyl2011_v01/latest",
+    "analytics/compare_toc_models/jgyl2011_v01/2026-01-03_17-25-54",
+    "analytics/compare_toc_models/dagz_v02/2026-01-03_17-17-06",
+    "analytics/compare_toc_models/dagz_v02/latest",
+    "analytics/compare_toc_models/dagz_v02/2026-01-03_17-25-54",
+    "analytics/toc_extracted/dagz_v01/latest",
+    "analytics/extract_toc_titles/jgyl2011_v01/2026-01-03_16-54-45",
+    "analytics/extract_toc_titles/jgyl2011_v01/latest",
+    "analytics/extract_toc_titles/dagz_v02/2026-01-03_16-54-45",
+    "analytics/extract_toc_titles/dagz_v02/latest",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_15-22-30",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_14-20-42",
+    "analytics/extract_toc_titles/msgz1992/latest",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_12-40-16",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_16-42-27",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_15-44-22",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_16-25-09",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_15-34-01",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_15-26-27",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_16-20-15",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_12-40-16/errors",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_16-42-27/errors",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_15-34-01/errors",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_15-26-27/errors",
+    "analytics/extract_toc_titles/msgz1992/2026-01-03_16-20-15/errors",
+    "analytics/parse_structure/jgyl2011_v01/latest",
+    "analytics/parse_structure/jgyl2011_v01/2026-01-02_11-32-58",
+    "analytics/parse_structure/gwcl2003/latest",
+    "analytics/parse_structure/gwcl2003/2026-01-02_11-32-58",
+    "analytics/parse_structure/dagz_v02/latest",
+    "analytics/parse_structure/dagz_v02/2026-01-02_11-32-58",
+    "analytics/parse_structure/msgz1992/latest",
+    "analytics/parse_structure/msgz1992/2026-01-02_11-32-58",
+    "analytics/parse_structure/gbda1987/latest",
+    "analytics/parse_structure/gbda1987/2026-01-02_11-32-58",
+    "analytics/parse_structure/dwgz1992/latest",
+    "analytics/parse_structure/dwgz1992/2026-01-02_11-32-58",
+    "analytics/parse_structure/dagz_v01/latest",
+    "analytics/parse_structure/dagz_v01/2026-01-02_11-32-58",
+    "analytics/ocr/jgyl2011_v01/2026-01-02_00-33-11",
+    "analytics/ocr/jgyl2011_v01/latest",
+    "analytics/ocr/gwcl2003/2026-01-02_00-33-11",
+    "analytics/ocr/gwcl2003/latest",
+    "analytics/ocr/dagz_v02/2026-01-02_00-33-11",
+    "analytics/ocr/dagz_v02/latest",
+    "analytics/ocr/msgz1992/2026-01-02_00-33-11",
+    "analytics/ocr/msgz1992/latest",
+    "analytics/ocr/gbda1987/2026-01-02_00-33-11",
+    "analytics/ocr/gbda1987/latest",
+    "analytics/ocr/dwgz1992/2026-01-02_00-33-11",
+    "analytics/ocr/dwgz1992/latest",
+    "analytics/ocr/dagz_v01/2026-01-02_00-33-11",
+    "analytics/ocr/dagz_v01/latest"
+  ],
+  "files": [
+    {
+      "path": ".DS_Store",
+      "size": 8196
+    },
+    {
+      "path": "sources/.DS_Store",
+      "size": 6148
+    },
+    {
+      "path": "sources/.gitkeep",
+      "size": 0
+    },
+    {
+      "path": "analytics/toc/.gitkeep",
+      "size": 0
+    },
+    {
+      "path": "analytics/job_metadata/2026-01-02_00-33-11_pagination.json",
+      "size": 7946
+    },
+    {
+      "path": "analytics/job_metadata/.gitkeep",
+      "size": 0
+    },
+    {
+      "path": "analytics/segmentation/.gitkeep",
+      "size": 0
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_12-39-51.json",
+      "size": 2075
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_17-17-06.json",
+      "size": 1350
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_15-22-30.json",
+      "size": 1911
+    },
+    {
+      "path": "analytics/job_registry/2026-01-02_16-30-20.json",
+      "size": 1455
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_12-40-16.json",
+      "size": 6229
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_16-20-15.json",
+      "size": 2063
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_15-44-22.json",
+      "size": 2411
+    },
+    {
+      "path": "analytics/job_registry/2026-01-02_16-13-33.json",
+      "size": 959
+    },
+    {
+      "path": "analytics/job_registry/2026-01-02_00-33-11.json",
+      "size": 2301
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_14-20-42.json",
+      "size": 1910
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_12-35-38.json",
+      "size": 2075
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_17-25-54.json",
+      "size": 1350
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_16-25-09.json",
+      "size": 1913
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_16-42-27.json",
+      "size": 2052
+    },
+    {
+      "path": "analytics/job_registry/2026-01-02_11-32-58.json",
+      "size": 1268
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_15-34-01.json",
+      "size": 2063
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_15-26-27.json",
+      "size": 2063
+    },
+    {
+      "path": "analytics/job_registry/2026-01-03_16-54-45.json",
+      "size": 5652
+    },
+    {
+      "path": "analytics/ocr/.gitkeep",
+      "size": 0
+    },
+    {
+      "path": "analytics/compare_toc_models/job_metadata/2026-01-03_17-17-06.json",
+      "size": 693
+    },
+    {
+      "path": "analytics/compare_toc_models/job_metadata/2026-01-03_17-25-54.json",
+      "size": 693
+    },
+    {
+      "path": "analytics/compare_toc_models/dagz_v02/2026-01-03_17-17-06/dagz_v02_consensus.json",
+      "size": 352432
+    },
+    {
+      "path": "analytics/compare_toc_models/dagz_v02/2026-01-03_17-25-54/dagz_v02_consensus.json",
+      "size": 352432
+    },
+    {
+      "path": "analytics/compare_toc_models/jgyl2011_v01/2026-01-03_17-17-06/jgyl2011_v01_consensus.json",
+      "size": 314857
+    },
+    {
+      "path": "analytics/compare_toc_models/jgyl2011_v01/2026-01-03_17-25-54/jgyl2011_v01_consensus.json",
+      "size": 314857
+    },
+    {
+      "path": "analytics/toc_extracted/dagz_v01/latest/dagz_v01.json",
+      "size": 14639
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_12-39-51.json",
+      "size": 1298
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_15-22-30.json",
+      "size": 1162
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_12-40-16.json",
+      "size": 5336
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_16-20-15.json",
+      "size": 1298
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_15-44-22.json",
+      "size": 1594
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_14-20-42.json",
+      "size": 1161
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_12-35-38.json",
+      "size": 1298
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_16-25-09.json",
+      "size": 1164
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_16-42-27.json",
+      "size": 1287
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_15-34-01.json",
+      "size": 1298
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_15-26-27.json",
+      "size": 1298
+    },
+    {
+      "path": "analytics/extract_toc_titles/job_metadata/2026-01-03_16-54-45.json",
+      "size": 4403
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_15-22-30/msgz1992_qwen3_30b_instruct.json",
+      "size": 38378
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_14-20-42/msgz1992_gemini2.5_flash.json",
+      "size": 38771
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_12-40-16/msgz1992_gemini2.5_flash.json",
+      "size": 38550
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_12-40-16/msgz1992_gpt5_nano.json",
+      "size": 46271
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_15-44-22/msgz1992_deepseek_r1_32b.json",
+      "size": 19965
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_15-44-22/msgz1992_gpt5_mini.json",
+      "size": 38295
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_16-25-09/msgz1992_qwen3_4b_instruct.json",
+      "size": 40311
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_16-20-15/errors/msgz1992_gemini2.5_flash_error.json",
+      "size": 510
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_15-26-27/errors/msgz1992_gemini2.5_flash_error.json",
+      "size": 510
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_15-34-01/errors/msgz1992_gemini2.5_flash_error.json",
+      "size": 510
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_16-42-27/errors/msgz1992_gemini2.5_pro_error.json",
+      "size": 501
+    },
+    {
+      "path": "analytics/extract_toc_titles/msgz1992/2026-01-03_12-40-16/errors/msgz1992_qwen3_4b_instruct_error.json",
+      "size": 3672
+    },
+    {
+      "path": "analytics/extract_toc_titles/dagz_v02/2026-01-03_16-54-45/dagz_v02_gemini2.5_flash.json",
+      "size": 37865
+    },
+    {
+      "path": "analytics/extract_toc_titles/dagz_v02/2026-01-03_16-54-45/dagz_v02_qwen3_4b_instruct.json",
+      "size": 38031
+    },
+    {
+      "path": "analytics/extract_toc_titles/dagz_v02/2026-01-03_16-54-45/dagz_v02_gpt5_mini.json",
+      "size": 38093
+    },
+    {
+      "path": "analytics/extract_toc_titles/dagz_v02/2026-01-03_16-54-45/dagz_v02_gemini2.5_pro.json",
+      "size": 38094
+    },
+    {
+      "path": "analytics/extract_toc_titles/dagz_v02/2026-01-03_16-54-45/dagz_v02_qwen3_30b_instruct.json",
+      "size": 38399
+    },
+    {
+      "path": "analytics/extract_toc_titles/jgyl2011_v01/2026-01-03_16-54-45/jgyl2011_v01_qwen3_30b_instruct.json",
+      "size": 35750
+    },
+    {
+      "path": "analytics/extract_toc_titles/jgyl2011_v01/2026-01-03_16-54-45/jgyl2011_v01_gpt5_mini.json",
+      "size": 35735
+    },
+    {
+      "path": "analytics/extract_toc_titles/jgyl2011_v01/2026-01-03_16-54-45/jgyl2011_v01_gemini2.5_flash.json",
+      "size": 36066
+    },
+    {
+      "path": "analytics/extract_toc_titles/jgyl2011_v01/2026-01-03_16-54-45/jgyl2011_v01_qwen3_4b_instruct.json",
+      "size": 33363
+    },
+    {
+      "path": "analytics/extract_toc_titles/jgyl2011_v01/2026-01-03_16-54-45/jgyl2011_v01_gemini2.5_pro.json",
+      "size": 35725
+    },
+    {
+      "path": "analytics/parse_structure/job_metadata/2026-01-02_16-30-20.json",
+      "size": 775
+    },
+    {
+      "path": "analytics/parse_structure/job_metadata/2026-01-02_11-32-58.json",
+      "size": 624
+    },
+    {
+      "path": "analytics/parse_structure/job_metadata/2026-01-02_11-46-06.json",
+      "size": 497
+    },
+    {
+      "path": "analytics/parse_structure/dagz_v01/2026-01-02_11-32-58/dagz_v01.json",
+      "size": 1521
+    },
+    {
+      "path": "analytics/parse_structure/dwgz1992/2026-01-02_11-32-58/dwgz1992.json",
+      "size": 1566
+    },
+    {
+      "path": "analytics/parse_structure/gbda1987/2026-01-02_11-32-58/gbda1987.json",
+      "size": 1229
+    },
+    {
+      "path": "analytics/parse_structure/msgz1992/2026-01-02_11-32-58/msgz1992.json",
+      "size": 1114
+    },
+    {
+      "path": "analytics/parse_structure/dagz_v02/2026-01-02_11-32-58/dagz_v02.json",
+      "size": 1329
+    },
+    {
+      "path": "analytics/parse_structure/gwcl2003/2026-01-02_11-32-58/gwcl2003.json",
+      "size": 1044
+    },
+    {
+      "path": "analytics/parse_structure/jgyl2011_v01/2026-01-02_11-32-58/jgyl2011_v01.json",
+      "size": 1021
+    },
+    {
+      "path": "analytics/ocr/job_metadata/.gitkeep",
+      "size": 0
+    },
+    {
+      "path": "analytics/ocr/job_metadata/2026-01-02_00-33-11.json",
+      "size": 293
+    },
+    {
+      "path": "analytics/ocr/gbda1987/.DS_Store",
+      "size": 6148
+    },
+    {
+      "path": "analytics/ocr/dagz_v01/2026-01-02_00-33-11/dagz_v01.json",
+      "size": 2577084
+    },
+    {
+      "path": "analytics/ocr/dwgz1992/2026-01-02_00-33-11/dwgz1992.json",
+      "size": 18344771
+    },
+    {
+      "path": "analytics/ocr/gbda1987/2026-01-02_00-33-11/gbda1987.json",
+      "size": 2123704
+    },
+    {
+      "path": "analytics/ocr/msgz1992/2026-01-02_00-33-11/msgz1992.json",
+      "size": 4110774
+    },
+    {
+      "path": "analytics/ocr/dagz_v02/2026-01-02_00-33-11/dagz_v02.json",
+      "size": 3271279
+    },
+    {
+      "path": "analytics/ocr/gwcl2003/2026-01-02_00-33-11/gwcl2003.json",
+      "size": 2402747
+    },
+    {
+      "path": "analytics/ocr/jgyl2011_v01/2026-01-02_00-33-11/jgyl2011_v01.json",
+      "size": 3532769
+    },
+    {
+      "path": "analytics/sync_ocr/job_metadata/2026-01-02_16-13-33.json",
+      "size": 388
+    },
+    {
+      "path": "sources/dagz/dagz_v08.pdf",
+      "size": 251393105
+    },
+    {
+      "path": "sources/dagz/dagz_v09.pdf",
+      "size": 194517190
+    },
+    {
+      "path": "sources/dagz/dagz_v02.pdf",
+      "size": 10920123
+    },
+    {
+      "path": "sources/dagz/dagz_v03.pdf",
+      "size": 19568666
+    },
+    {
+      "path": "sources/dagz/dagz_v01.pdf",
+      "size": 12273298
+    },
+    {
+      "path": "sources/dagz/dagz_v10.pdf",
+      "size": 259474408
+    },
+    {
+      "path": "sources/dagz/dagz_v04.pdf",
+      "size": 28199105
+    },
+    {
+      "path": "sources/dagz/dagz_v05.pdf",
+      "size": 219366947
+    },
+    {
+      "path": "sources/dagz/dagz_v07.pdf",
+      "size": 238692965
+    },
+    {
+      "path": "sources/dagz/dagz_v06.pdf",
+      "size": 279265983
+    },
+    {
+      "path": "sources/test/msgz1992.pdf",
+      "size": 84828364
+    },
+    {
+      "path": "sources/test/.DS_Store",
+      "size": 6148
+    },
+    {
+      "path": "sources/test/dwgz1992.pdf",
+      "size": 480652479
+    },
+    {
+      "path": "sources/test/jgyl2011_v01.pdf",
+      "size": 19418246
+    },
+    {
+      "path": "sources/test/dagz_v02.pdf",
+      "size": 11106684
+    },
+    {
+      "path": "sources/test/gwcl2003.pdf",
+      "size": 151499678
+    },
+    {
+      "path": "sources/test/gbda1987.pdf",
+      "size": 24127018
+    },
+    {
+      "path": "sources/job_metadata/.gitkeep",
+      "size": 0
+    },
+    {
+      "path": "sources/job_metadata/2026-01-02_00-28-28.json",
+      "size": 1030
+    }
+  ]
+}

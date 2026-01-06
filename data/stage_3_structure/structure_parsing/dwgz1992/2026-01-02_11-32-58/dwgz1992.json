@@ -1,0 +1,77 @@
+{
+  "citekey": "dwgz1992",
+  "source_job_id": "2026-01-02_00-33-11",
+  "parse_structure_job_id": "2026-01-02_11-32-58",
+  "generated_at": "2026-01-02T11:33:00.976908Z",
+  "body": {
+    "first_real_page": 3,
+    "last_real_page": 1373,
+    "first_pdf_page": 36,
+    "last_pdf_page": 1406,
+    "pdf_page_offset": -33,
+    "confidence": 1.0,
+    "detection_quality": {
+      "consistency_score": 1.0,
+      "position_consistency": 1.0,
+      "sequence_length": 1337,
+      "gaps": [
+        240,
+        541,
+        585,
+        586,
+        663,
+        748,
+        770,
+        815,
+        865,
+        866,
+        1078,
+        1083,
+        1086,
+        1108,
+        1118,
+        1120,
+        1132,
+        1138,
+        1139,
+        1144,
+        1148,
+        1154,
+        1158,
+        1162,
+        1163,
+        1164,
+        1168,
+        1170,
+        1172,
+        1178,
+        1182,
+        1190,
+        1300,
+        1354
+      ]
+    }
+  },
+  "toc": {
+    "first_real_page": 1,
+    "last_real_page": 27,
+    "first_pdf_page": 7,
+    "last_pdf_page": 33,
+    "pdf_page_offset": -6,
+    "confidence": 0.98,
+    "detection_quality": {
+      "detection_method": "pagination_diff_offset",
+      "start_detection_method": "keyword_inferred",
+      "start_confidence": 0.85,
+      "keyword_found": false,
+      "keyword_pdf_page": 7,
+      "inferred_flags": [
+        "missing_page_number_on_keyword_page_with_different_offset"
+      ]
+    }
+  },
+  "metadata": {
+    "total_pdf_pages": "varies",
+    "notes": "Body: pages 3–1373 (offset -33)"
+  }
+}

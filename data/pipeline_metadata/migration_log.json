@@ -1,0 +1,17 @@
+{
+  "migrated_at": "2026-01-05T21:17:23.108516-05:00",
+  "migrations": [
+    {
+      "old": "data/analytics/job_metadata",
+      "new": "data/stage_1_ingest/metadata/job_metadata_archive",
+      "status": "success"
+    },
+    {
+      "old": "data/analytics/job_registry",
+      "new": "data/pipeline_metadata/job_registry_old",
+      "status": "success"
+    }
+  ],
+  "new_structure_version": "2.0",
+  "notes": "Migrated to stage-based organization"
+}

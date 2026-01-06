@@ -1,0 +1,84 @@
+{
+  "job_id": "2026-01-03_12-35-38",
+  "timestamp": "2026-01-03T12:35:38.548434",
+  "source": null,
+  "pipeline_steps": {
+    "extract_toc_titles": {
+      "job_id": "2026-01-03_12-35-38",
+      "status": "completed",
+      "timestamp": "2026-01-03T12:35:38.548450",
+      "metadata_path": "extract_toc_titles/job_metadata/2026-01-03_12-35-38.json",
+      "citekeys": {
+        "total": 1,
+        "successful": 0,
+        "failed": 1,
+        "list": [
+          "msgz1992"
+        ],
+        "failed_list": [
+          "msgz1992"
+        ]
+      },
+      "source_job_id": "2026-01-02_11-32-58",
+      "execution_mode": "parallel",
+      "models": {
+        "list": [
+          "qwen3_4b_instruct",
+          "gpt5_nano",
+          "gemini2.5_flash"
+        ],
+        "statistics": {
+          "qwen3_4b_instruct": {
+            "successful": 0,
+            "failed": 1,
+            "total_extractions": 0,
+            "total_time_seconds": 0,
+            "avg_time_seconds": 0
+          },
+          "gpt5_nano": {
+            "successful": 0,
+            "failed": 1,
+            "total_extractions": 0,
+            "total_time_seconds": 0,
+            "avg_time_seconds": 0
+          },
+          "gemini2.5_flash": {
+            "successful": 0,
+            "failed": 1,
+            "total_extractions": 0,
+            "total_time_seconds": 0,
+            "avg_time_seconds": 0
+          }
+        }
+      },
+      "extraction_config": {
+        "passes": 3,
+        "max_char_buffer": 1500,
+        "batch_length": 1000
+      },
+      "timing": {
+        "total_seconds": 0.01,
+        "total_minutes": 0.0
+      },
+      "results": [
+        {
+          "citekey": "msgz1992",
+          "status": "error",
+          "error": "Failed to extract TOC text",
+          "models": {},
+          "timing": {
+            "total_seconds": 0.0
+          }
+        }
+      ]
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "extract_toc_titles",
+      "job_id": "2026-01-03_12-35-38",
+      "timestamp": "2026-01-03T12:35:38.548454",
+      "status": "completed"
+    }
+  ]
+}

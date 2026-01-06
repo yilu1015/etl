@@ -1,0 +1,1219 @@
+{
+  "citekey": "msgz1992",
+  "source_job_id": "2026-01-02_11-32-58",
+  "extract_toc_titles_job_id": "2026-01-03_15-22-30",
+  "generated_at": "2026-01-03T20:23:59.204658Z",
+  "model": {
+    "key": "qwen3_30b_instruct",
+    "name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "provider": "openai"
+  },
+  "extraction_settings": {
+    "passes": 2,
+    "max_char_buffer": 2500,
+    "batch_length": 1000
+  },
+  "toc_metadata": {
+    "page_range": "3-13",
+    "num_pages": 11,
+    "text_length": 5223
+  },
+  "extractions": {
+    "count": 99,
+    "entries": [
+      {
+        "extraction_text": "中共中央关于纠正电报、报告、指示、决定等文字缺点的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1951-02-01",
+          "page": 2,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中国共产党中央和省（市）级机关文书处理工作和档案工作暂行条例",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1955-01-17",
+          "page": 7,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中国共产党县级机关文书处理工作和档案工作暂行办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1956-11-27",
+          "page": 14,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅关于秘密文件管理工作的暂行规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1964-10-01",
+          "page": 20,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅关于机要秘书工作的暂行规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1964-10-01",
+          "page": 27,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅关于中央发至县团级文件的印发和传达问题的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1979-05-17",
+          "page": 31,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中央收发文件电报批抄、注办工作的原则和办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1980-04-10",
+          "page": 33,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅关于担任领导职务的党外人士阅读文件资料问题的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1980-06-13",
+          "page": 37,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于各级领导干部要亲自动手起草重要文件不要一切由秘书代劳的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1981-05-07",
+          "page": 39,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅转发中办秘书局《关于改进中央文件传达方法的意见》",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1981-06-09",
+          "page": 44,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、国务院办公厅关于向党中央和国务院报送文件的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1982-05-21",
+          "page": 47,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅关于中央文件印发、阅读和管理的办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1985-06-10",
+          "page": 49,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中央办公厅关于印发《中国共产党各级领导机关文件处理条例（试行）》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1989-04-25",
+          "page": 52,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅关于办理各省市自治区和国务院各部门向国务院请示的文件、电报的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1981-04-10",
+          "page": 61,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于国务院批转的文件格式问题的几点注意事项",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1982-02-08",
+          "page": 66,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅关于印发国务院文件一些问题的规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1982-02-09",
+          "page": 67,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅关于转发国务院文件的补充通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1982-02-26",
+          "page": 70,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院文件格式细则",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1983-08",
+          "page": 71,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅公文处理办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1984-03-30",
+          "page": 81,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅关于公文处理等几个具体问题的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1985-09-10",
+          "page": 86,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅关于修订《向国务院报送文件的若干规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1985-12-20",
+          "page": 88,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅关于发布《国家行政机关公文处理办法》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1987-02-18",
+          "page": 92,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国国家标准 国家机关公文格式",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-09-05",
+          "page": 99,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于印发《中共河南省委办公厅关于文书处理工作的暂行规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1982-07-27",
+          "page": 106,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人民政府办公厅关于向省委、省政府报送文件的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1982-12-07",
+          "page": 114,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于省委、省委办公厅文件格式改进意见的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1984-02-14",
+          "page": 116,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅印发《关于改进省委、省委办公厅文件处理工作的意见》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1986-03-16",
+          "page": 117,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府关于改进省政府规章发布工作的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1989-02-15",
+          "page": 121,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府公文处理办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1992-03-12",
+          "page": 124,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅关于公文处理工作若干问题的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1985-05-29",
+          "page": 129,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅关于印发《政府机关公文处理细则》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1986-09-22",
+          "page": 132,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅关于加强政府行政规章管理的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1987-07-17",
+          "page": 148,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅关于实行公文抄报制度等有关问题的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1987-10-22",
+          "page": 150,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅印发《河南省人民政府关于办理人大代表建议和政协委员提案暂行规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1990-04-27",
+          "page": 152,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅秘书局《关于向中央通报信息的情况和意见》",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1985-12-21",
+          "page": 158,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于印发《省信息工作座谈会纪要》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1987-02-11",
+          "page": 161,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于印发《省信息工作座谈会纪要》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1989-04-29",
+          "page": 168,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于印发《河南省党委系统信息工作条例（试行）》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1990-05-26",
+          "page": 174,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅政务信息工作制度",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1992-03-12",
+          "page": 181,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于印发《省查办催办工作座谈会纪要》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-08-31",
+          "page": 184,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于印发《河南省党委系统督促检查工作条例（试行）》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1990-05-26",
+          "page": 191,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于建立省委办公厅督促检查工作联系点的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1991-03-21",
+          "page": 196,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅关于印发催办查办工作试行意见的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-10-12",
+          "page": 198,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅催办查办工作暂行办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1992-03-12",
+          "page": 201,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央、国务院批转中央保密委员会办公室、外交部、公安部《关于在对外活动中加强保密工作的请示报告》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1979-08-13",
+          "page": 206,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、中共中央保密委员会关于加强复印机密文件管理工作的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1980-09-12",
+          "page": 210,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、国务院办公厅转发国家科委《关于加强科学技术保密工作的报告》",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1982-08-17",
+          "page": 211,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅印发《省市自治区保密工作座谈会纪要》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1983-05-25",
+          "page": 220,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央保密委员会关于切实加强复印秘密文件管理工作的补充通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": null,
+          "page": null,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅关于印发《第十三次全国机要交通工作会议纪要》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1984-12-05",
+          "page": 225,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院批转国家科委制定的《科学技术保密条例》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1990-12-18",
+          "page": 227,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅关于严格管理对外发表统计数字的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1981-11-07",
+          "page": 230,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅转发对外经济贸易部《关于加强对外经济贸易活动中保密工作规定的请示》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1983-03-08",
+          "page": 233,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院办公厅转发国家统计局《统计资料保密管理办法》的通知（节录）",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1983-07-02",
+          "page": 234,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国保守国家秘密法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1985-04-15",
+          "page": 238,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国保守国家秘密法实施办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-09-05",
+          "page": 241,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国家秘密保密期限的规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1990-05-25",
+          "page": 247,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人民政府办公厅关于印发《河南省涉外保密工作暂行规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1987-12-26",
+          "page": 257,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人民政府办公厅关于印发《河南省党政机关明传电报管理规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1989-03-15",
+          "page": 263,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人民政府办公厅关于印发河南省省直机关要文件交换站工作暂行规则及奖罚规定的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1991-04-23",
+          "page": 266,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于转发《中共河南省委保密委员会关于地，县级干部保守党和国家秘密的规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1991-10-08",
+          "page": 273,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅保密制度",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1992-03-12",
+          "page": 276,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、国务院办公厅关于控制各种纪念活动的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1984-05-21",
+          "page": 280,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、国务院办公厅关于简化各级领导干部外出活动接待工作的若干规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1986-01-23",
+          "page": 282,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委、河南省人民政府关于大力精简会议、文件和应酬活动的规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1991-03-13",
+          "page": 285,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅印发《关于进一步健全省委常委会议和书记办公制度的若干规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1986-03-16",
+          "page": 289,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人民政府办公厅关于严禁党政机关干部用公款请客送礼奢侈浪费的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-11-29",
+          "page": 293,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府批转省政府办公厅《关于全省政府部门对内接待工作会议情况的报告》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-03-26",
+          "page": 295,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府会议审报、审批制度",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1992-03-12",
+          "page": 300,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅转发省外办《关于改革我省涉外宴请的几点意见》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-03-21",
+          "page": 302,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省人民政府办公厅关于严格控制新闻发布会和周年纪念活动的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-08-22",
+          "page": 304,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省财政厅关于严格禁止用公款请客送礼、铺张浪费的规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1989-08-10",
+          "page": 305,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省财政厅关于省直机关接待中央和兄弟省市领导工作餐标准的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1992-01-16",
+          "page": 308,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "党政机关信访工作暂行条例（草案）",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1982-02-28",
+          "page": 310,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、全国人大常委会办公厅、国务院办公厅印发《关于中央各部门归口分工接待群众来访的暂行办法》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1980-08-04",
+          "page": 315,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国务院关于维护信访工作秩序的几项规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1980-08-22",
+          "page": 320,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、国务院办公厅关于加强信访工作的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1986-03-12",
+          "page": 321,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、国务院办公厅关于贯彻党的十三届六中全会精神切实做好信访工作的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1990-08-31",
+          "page": 324,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委、河南省人民政府关于人民来信来访工作的暂行规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1991-03-14",
+          "page": 327,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人民政府办公厅关于预防和处理群众集体上访的若干规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1989-03-15",
+          "page": 334,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人大常委会办公厅、河南省人民政府办公厅关于修订印发《省直各部门归口分工接待群众来访办法》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1991-08-20",
+          "page": 337,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央、国务院批转国家档案局关于全国档案工作会议的报告",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1980-02-14",
+          "page": 346,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央办公厅、国务院办公厅印发《机关档案工作条例》",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1983-04-28",
+          "page": 353,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国档案法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1988-01-01",
+          "page": 359,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国档案法实施办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1990-10-24",
+          "page": 364,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国家档案局关于印发《各级国家档案馆收集档案范围的规定》与《档案馆开放档案暂行办法》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1986-02-07",
+          "page": 372,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国家档案局关于印发《机关档案工作业务建设规范》等三个文件的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1987-12-04",
+          "page": 379,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国家档案局、国家保密局关于印发《各级国家档案馆馆藏档案解密和划分控制使用范围的暂行规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1991-09-27",
+          "page": 397,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国家物价局、财政部关于发布中央管理的档案系统行政事业性收费项目及标准的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1992-03-26",
+          "page": 402,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人民政府办公厅关于印发《河南省乡、镇文书处理和档案工作暂行办法》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1984-03-10",
+          "page": 406,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅关于批转省档案局党组《关于收集历史档案资料的几点意见的报告》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1984-05-03",
+          "page": 410,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共河南省委办公厅、河南省人民政府办公厅转发省档案局《关于完整、系统地收集中央领导同志视察我省所形成的档案材料的请示》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1986-08-19",
+          "page": 413,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省文书档案案卷质量标准和验收办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1980-12-02",
+          "page": 415,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省档案局印发《关于文书档案保管期限的规定》及《河南省文书档案保管期限表》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1985-02-15",
+          "page": 418,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省档案局关于转发省档案馆资料与声像档案收集范围两个《规定》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1987-02-11",
+          "page": 425,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "河南省档案局、河南省物价局关于转发国家档案局、国家物价局《关于利用档案收费有关规定的通知》的通知",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1987-10-27",
+          "page": 430,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于出版物上数字用法的试行规定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": null,
+          "page": 434,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "公文的校对",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": null,
+          "page": 138,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "标点符号用法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": null,
+          "page": 443,
+          "references": [],
+          "authors": []
+        }
+      }
+    ]
+  },
+  "timing": {
+    "extraction_seconds": 87.64,
+    "total_seconds": 87.64
+  },
+  "status": "success"
+}

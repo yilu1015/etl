@@ -1,0 +1,19 @@
+{
+  "citekey": "msgz1992",
+  "source_job_id": "2026-01-02_11-32-58",
+  "extract_toc_titles_job_id": "2026-01-03_16-42-27",
+  "generated_at": "2026-01-03T21:48:40.694977Z",
+  "model": {
+    "key": "gemini2.5_pro",
+    "name": "gemini-2.5-pro",
+    "provider": "gemini"
+  },
+  "error": {
+    "type": "ResolverParsingError",
+    "message": "Failed to parse JSON content: Expecting ',' delimiter: line 12894 column 2 (char 115682)"
+  },
+  "timing": {
+    "total_seconds": 372.76
+  },
+  "status": "error"
+}

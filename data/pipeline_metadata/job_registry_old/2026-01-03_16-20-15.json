@@ -1,0 +1,81 @@
+{
+  "job_id": "2026-01-03_16-20-15",
+  "timestamp": "2026-01-03T16:24:17.328007",
+  "source": null,
+  "pipeline_steps": {
+    "extract_toc_titles": {
+      "job_id": "2026-01-03_16-20-15",
+      "status": "completed",
+      "timestamp": "2026-01-03T16:24:17.328035",
+      "metadata_path": "extract_toc_titles/job_metadata/2026-01-03_16-20-15.json",
+      "citekeys": {
+        "total": 1,
+        "successful": 0,
+        "failed": 1,
+        "list": [
+          "msgz1992"
+        ],
+        "failed_list": [
+          "msgz1992"
+        ]
+      },
+      "source_job_id": "2026-01-02_11-32-58",
+      "execution_mode": "parallel",
+      "models": {
+        "list": [
+          "gemini2.5_flash"
+        ],
+        "statistics": {
+          "gemini2.5_flash": {
+            "successful": 0,
+            "failed": 1,
+            "total_extractions": 0,
+            "total_time_seconds": 241.24,
+            "avg_time_seconds": 0
+          }
+        }
+      },
+      "extraction_config": {
+        "passes": 2,
+        "max_char_buffer": 2500,
+        "batch_length": 1000
+      },
+      "timing": {
+        "total_seconds": 241.77,
+        "total_minutes": 4.03
+      },
+      "results": [
+        {
+          "citekey": "msgz1992",
+          "status": "error",
+          "models": {
+            "gemini2.5_flash": {
+              "status": "error",
+              "extraction_count": 0,
+              "timing": {
+                "total_seconds": 241.24
+              },
+              "error": {
+                "type": "ResolverParsingError",
+                "message": "Failed to parse JSON content: Unterminated string starting at: line 194 column 12 (char 7347)"
+              }
+            }
+          },
+          "successful_models": 0,
+          "total_models": 1,
+          "timing": {
+            "total_seconds": 241.76
+          }
+        }
+      ]
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "extract_toc_titles",
+      "job_id": "2026-01-03_16-20-15",
+      "timestamp": "2026-01-03T16:24:17.328045",
+      "status": "completed"
+    }
+  ]
+}

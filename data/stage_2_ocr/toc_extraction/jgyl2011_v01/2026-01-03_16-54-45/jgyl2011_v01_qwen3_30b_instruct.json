@@ -1,0 +1,1268 @@
+{
+  "citekey": "jgyl2011_v01",
+  "source_job_id": "2026-01-02_11-32-58",
+  "extract_toc_titles_job_id": "2026-01-03_16-54-45",
+  "generated_at": "2026-01-03T21:59:53.940932Z",
+  "model": {
+    "key": "qwen3_30b_instruct",
+    "name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "provider": "openai"
+  },
+  "extraction_settings": {
+    "passes": 2,
+    "max_char_buffer": 2500,
+    "batch_length": 1000
+  },
+  "toc_metadata": {
+    "page_range": "7-16",
+    "num_pages": 10,
+    "text_length": 4733
+  },
+  "extractions": {
+    "count": 97,
+    "entries": [
+      {
+        "extraction_text": "中国人民政治协商会议共同纲领",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-09-29",
+          "page": 1,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "人民政协共同纲领草案的特点",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-09-22",
+          "page": 12,
+          "references": [],
+          "authors": [
+            "周恩来"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国中央人民政府公告",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-10-01",
+          "page": 17,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中国人民解放军总部命令",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-10-01",
+          "page": 19,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于少数民族“自决权”问题给二野前委的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-10-05",
+          "page": 20,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "新华总社关于土改后农村阶级划分问题给东北总分社的复电",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-10-11",
+          "page": 21,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于学习松江县召开各界人民代表会议经验的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-10-13",
+          "page": 23,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "毛泽东批转薄一波《关于华北各城市召开各界代表会议的情形和经验的报告》",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-10-30",
+          "page": 25,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "制止物价猛涨",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-11-13",
+          "page": 29,
+          "references": [],
+          "authors": [
+            "陈云"
+          ]
+        }
+      },
+      {
+        "extraction_text": "关于大量吸收和培养少数民族干部的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-11-14",
+          "page": 32,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中华全国总工会关于劳资关系暂行处理办法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-11-22",
+          "page": 33,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央批准华中局《关于纠正乡村工作干部不良作风的决定》的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-12-01",
+          "page": 39,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "发行公债弥补财政赤字",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-12-02",
+          "page": 44,
+          "references": [],
+          "authors": [
+            "陈云"
+          ]
+        }
+      },
+      {
+        "extraction_text": "关于一九五〇年度全国财政收支概算草案的报告",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-12-02",
+          "page": 48,
+          "references": [],
+          "authors": [
+            "薄一波"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中央人民政府委员会关于发行人民胜利折实公债的决定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-12-02",
+          "page": 52,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于中央人民政府成立后党的文化教育工作问题的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-12-05",
+          "page": 54,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中央人民政府人民革命军事委员会关于一九五〇年军队参加生产建设工作的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-12-05",
+          "page": 56,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "当前财经形势和新中国经济的几种关系",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-12-22",
+          "page": 60,
+          "references": [],
+          "authors": [
+            "周恩来"
+          ]
+        }
+      },
+      {
+        "extraction_text": "在第一次全国教育工作会议上的总结报告要点",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1949-12-30",
+          "page": 73,
+          "references": [],
+          "authors": [
+            "钱俊瑞"
+          ]
+        }
+      },
+      {
+        "extraction_text": "毛泽东关于周恩来去苏联参加谈判问题给中共中央的电报",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-01-02",
+          "page": 80,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "关于中苏两国在新疆设立金属和石油公司的问题给毛泽东的报告",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-01-02",
+          "page": 83,
+          "references": [],
+          "authors": [
+            "刘少奇"
+          ]
+        }
+      },
+      {
+        "extraction_text": "政务院关于关税政策和海关工作的决定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-01-27",
+          "page": 85,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央宣传部关于“人民民主专政实质上就是工农民主专政”给三野政治部的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-01",
+          "page": 89,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于讨论和执行人民日报《学会管理企业》的社论的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-02-12",
+          "page": 91,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "学会管理企业",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-02-06",
+          "page": 92,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中苏两国关于缔结友好同盟互助条约及协定的公告",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-02-14",
+          "page": 100,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "毛泽东、周恩来关于发表新区土改征粮指示给刘少奇的电报",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-02-17",
+          "page": 107,
+          "references": [],
+          "authors": [
+            "毛泽东",
+            "周恩来"
+          ]
+        }
+      },
+      {
+        "extraction_text": "政务院关于严禁鸦片烟毒的通令",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-02-24",
+          "page": 108,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "统一财政经济工作",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-03-03",
+          "page": 110,
+          "references": [],
+          "authors": [
+            "陈云"
+          ]
+        }
+      },
+      {
+        "extraction_text": "毛泽东关于征询对待富农策略问题的意见给邓子恢的电报",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-03-12",
+          "page": 116,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中共中央关于禁演旧剧问题给东北局的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-03-13",
+          "page": 118,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于镇压反革命活动的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-03-18",
+          "page": 120,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "人民民主统一战线的新形势与新任务",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-03-21",
+          "page": 123,
+          "references": [],
+          "authors": [
+            "李维汉"
+          ]
+        }
+      },
+      {
+        "extraction_text": "政务院关于统一管理一九五〇年度财政收支的决定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-03-24",
+          "page": 137,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央为公布新的土地法征求各地对若干问题意见的电报",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-03-30",
+          "page": 143,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于在民族杂居地区成立民族民主联合政府的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-03",
+          "page": 146,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国婚姻法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-13",
+          "page": 148,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "发挥人民民主统一战线积极作用的几个问题",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-13",
+          "page": 153,
+          "references": [],
+          "authors": [
+            "周恩来"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中共中央关于在报纸刊物上展开批评和自我批评的决定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-19",
+          "page": 163,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "长期合作，共同建设新中国",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-19",
+          "page": 166,
+          "references": [],
+          "authors": [
+            "周恩来"
+          ]
+        }
+      },
+      {
+        "extraction_text": "劳动部关于在私营企业中设立劳资协商会议的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-21",
+          "page": 168,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "政务院财政经济委员会关于严禁机关部队从事商业经营的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-22",
+          "page": 172,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "新闻总署关于改进报纸工作的决定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-21",
+          "page": 174,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于对富农出租地的方针问题致毛泽东电",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-25",
+          "page": 176,
+          "references": [],
+          "authors": [
+            "邓子恢"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中共中央关于庆祝“五一”劳动节的口号",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04-26",
+          "page": 180,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于对待民族资产阶级和私营工商业政策问题的批语",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-04",
+          "page": 184,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中共中央关于在全党全军开展整风运动的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-05-01",
+          "page": 187,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "毛泽东关于暂时不动富农出租地问题给邓子恢的电报",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-05-01",
+          "page": 189,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "关于基督教问题的四次谈话",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-05-02",
+          "page": 190,
+          "references": [],
+          "authors": [
+            "周恩来"
+          ]
+        }
+      },
+      {
+        "extraction_text": "加强党的纪律检查工作",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-05-06",
+          "page": 197,
+          "references": [],
+          "authors": [
+            "朱德"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中共中央关于发展和巩固党的组织的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-05-21",
+          "page": 209,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于保卫世界和平运动的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-05-23",
+          "page": 212,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央批准西南局关于与西藏地方政府谈判的条件",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-05-29",
+          "page": 214,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "为争取国家财政经济状况的基本好转而斗争",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-06",
+          "page": 217,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "不要四面出击",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-06",
+          "page": 223,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "调整公私关系和整顿税收",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-06",
+          "page": 227,
+          "references": [],
+          "authors": [
+            "陈云"
+          ]
+        }
+      },
+      {
+        "extraction_text": "在全国高等教育会议上的讲话",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-08",
+          "page": 234,
+          "references": [],
+          "authors": [
+            "周恩来"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中共中央转发乌兰夫刘格平《对新疆少数民族宗教问题的意见》",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-10",
+          "page": 240,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "为物价完全稳定而努力",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-11",
+          "page": 243,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于手工业政策的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-12",
+          "page": 247,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "政务院文化教育委员会关于中国科学院基本任务的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-14",
+          "page": 249,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于土地改革问题的报告",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-14",
+          "page": 251,
+          "references": [],
+          "authors": [
+            "刘少奇"
+          ]
+        }
+      },
+      {
+        "extraction_text": "目前经济形势和调整工商业、调整税收的措施",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-15",
+          "page": 269,
+          "references": [],
+          "authors": [
+            "陈云"
+          ]
+        }
+      },
+      {
+        "extraction_text": "做一个完全的革命派",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-23",
+          "page": 280,
+          "references": [],
+          "authors": [
+            "毛泽东"
+          ]
+        }
+      },
+      {
+        "extraction_text": "关于美国武装侵略中国领土台湾的声明",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-28",
+          "page": 284,
+          "references": [],
+          "authors": [
+            "周恩来"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国工会法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-28",
+          "page": 286,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中华人民共和国土地改革法",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-06-28",
+          "page": 292,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "农民协会组织通则",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-07-14",
+          "page": 300,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "毛泽东关于根治淮河的四次批语",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-07",
+          "page": 307,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "政务院、最高人民法院关于镇压反革命活动的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-07-21",
+          "page": 310,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于西南少数民族问题",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-07-21",
+          "page": 313,
+          "references": [],
+          "authors": [
+            "邓小平"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中国新民主主义青年团中央委员会关于克服目前新区学生工作中几个偏向的通报",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-07-27",
+          "page": 323,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中央人民政府人民革命军事委员会关于在军队中实施文化教育的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-08-01",
+          "page": 328,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "政务院关于划分农村阶级成分的决定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-08-04",
+          "page": 332,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于天主教、基督教问题的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-08-19",
+          "page": 354,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中财委关于全国金融会议情况向毛泽东主席并中央的综合报告",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-09-06",
+          "page": 358,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "军委主席毛泽东关于组成中国人民志愿军的命令",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-10-08",
+          "page": 362,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于镇压反革命活动的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-10-10",
+          "page": 364,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中央人民政府教育部关于加强对学校政治思想教育的领导的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-10-13",
+          "page": 367,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "政务院关于治理淮河的决定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-10-14",
+          "page": 369,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央转发《关于第一次全国工农教育会议的报告》的批示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-10-15",
+          "page": 372,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央关于在全国进行时事宣传的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-10-26",
+          "page": 378,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中共中央批转中央公安部《关于全国公安会议的报告》",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-10-28",
+          "page": 383,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "政务院关于改进和发展全国出版事业的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-10-28",
+          "page": 389,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "政务院关于加强人民司法工作的指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-11-03",
+          "page": 393,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "各民主党派联合宣言",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-11-04",
+          "page": 396,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "城市郊区土地改革条例",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-11-10",
+          "page": 399,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "同党外人士合作共事的四点经验",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-11-13",
+          "page": 403,
+          "references": [],
+          "authors": [
+            "薄一波"
+          ]
+        }
+      },
+      {
+        "extraction_text": "中央人民政府贸易部关于取缔投机商业的几项指示",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-11-14",
+          "page": 405,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "抗美援朝开始后财经工作的方针",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-11-15",
+          "page": 407,
+          "references": [],
+          "authors": [
+            "陈云"
+          ]
+        }
+      },
+      {
+        "extraction_text": "伍修权在联合国安全理事会上控诉美国武装侵略中国领土台湾的发言",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-11-28",
+          "page": 416,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "实行棉纱棉布的统购",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-12-07",
+          "page": 440,
+          "references": [],
+          "authors": [
+            "陈云"
+          ]
+        }
+      },
+      {
+        "extraction_text": "毛泽东关于镇压反革命分子的策略问题的电报",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-12-19",
+          "page": 442,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "中央人民政府政务院关于处理接受美国津贴的文化教育救济机关及宗教团体的方针的决定",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-12-29",
+          "page": 443,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "关于处理接受美国津贴的文化教育救济机关及宗教团体的方针的报告",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-12-29",
+          "page": 444,
+          "references": [],
+          "authors": [
+            "郭沫若"
+          ]
+        }
+      },
+      {
+        "extraction_text": "私营企业暂行条例",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950-12-29",
+          "page": 448,
+          "references": [],
+          "authors": []
+        }
+      },
+      {
+        "extraction_text": "国家的工业化和人民生活水平的提高",
+        "extraction_class": "toc_entry",
+        "start_char_idx": null,
+        "end_char_idx": null,
+        "attributes": {
+          "date": "1950",
+          "page": 455,
+          "references": [],
+          "authors": [
+            "刘少奇"
+          ]
+        }
+      }
+    ]
+  },
+  "timing": {
+    "extraction_seconds": 74.5,
+    "total_seconds": 74.5
+  },
+  "status": "success"
+}

@@ -1,0 +1,44 @@
+{
+  "status": "completed",
+  "source_job_id": "2026-01-02_16-13-33",
+  "citekeys": {
+    "total": 8,
+    "processed": 0,
+    "failed": 8,
+    "list": [
+      "dagz_v01",
+      "dagz_v02",
+      "dwgz1992",
+      "gbda1987",
+      "gwcl2003",
+      "jgyl2011_v01",
+      "msgz1992",
+      "test_v04"
+    ],
+    "failed_list": [
+      "dagz_v01",
+      "dagz_v02",
+      "dwgz1992",
+      "gbda1987",
+      "gwcl2003",
+      "jgyl2011_v01",
+      "msgz1992",
+      "test_v04"
+    ]
+  },
+  "quality_summary": {
+    "high_confidence": {
+      "count": 0,
+      "threshold": 0.95
+    },
+    "with_inferences": {
+      "count": 0,
+      "citekeys": []
+    }
+  },
+  "statistics": {
+    "avg_body_confidence": null,
+    "avg_toc_confidence": null,
+    "total_pages_analyzed": 0
+  }
+}

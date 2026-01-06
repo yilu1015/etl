@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "source_job_id": "2026-01-02_00-33-11",
+  "generated_at": "2026-01-02T11:46:06.134821Z",
+  "citekeys": {
+    "total": 0,
+    "processed": 0,
+    "failed": 0,
+    "list": []
+  },
+  "quality_summary": {
+    "high_confidence": {
+      "count": 0,
+      "threshold": 0.95
+    },
+    "with_inferences": {
+      "count": 0,
+      "citekeys": []
+    }
+  },
+  "statistics": {
+    "avg_body_confidence": null,
+    "avg_toc_confidence": null,
+    "total_pages_analyzed": 0
+  }
+}

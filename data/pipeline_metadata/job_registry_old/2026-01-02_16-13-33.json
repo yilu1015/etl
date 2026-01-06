@@ -1,0 +1,40 @@
+{
+  "job_id": "2026-01-02_16-13-33",
+  "timestamp": "2026-01-02T16:13:33.826277",
+  "source": null,
+  "pipeline_steps": {
+    "sync_ocr": {
+      "job_id": "2026-01-02_16-13-33",
+      "status": "completed",
+      "timestamp": "2026-01-02T16:13:33.826337",
+      "metadata_path": "sync_ocr/job_metadata/2026-01-02_16-13-33.json",
+      "citekeys": {
+        "total": 8,
+        "successful": 7,
+        "failed": 1,
+        "list": [
+          "dagz_v01",
+          "dagz_v02",
+          "dwgz1992",
+          "gbda1987",
+          "gwcl2003",
+          "jgyl2011_v01",
+          "msgz1992",
+          "test_v04"
+        ]
+      },
+      "source_job_id": "2026-01-02_00-33-11",
+      "files_uploaded": 7,
+      "files_skipped": 1,
+      "b2_bucket": "cna-analytics"
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "sync_ocr",
+      "job_id": "2026-01-02_16-13-33",
+      "timestamp": "2026-01-02T16:13:33.826350",
+      "status": "completed"
+    }
+  ]
+}

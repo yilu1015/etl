@@ -1,0 +1,53 @@
+{
+  "job_id": "2026-01-02_11-32-58",
+  "timestamp": "2026-01-02T11:33:01.907722",
+  "source": null,
+  "pipeline_steps": {
+    "parse_structure": {
+      "job_id": "2026-01-02_11-32-58",
+      "status": "completed",
+      "timestamp": "2026-01-02T11:33:01.907736",
+      "metadata_path": "parse_structure/job_metadata/2026-01-02_11-32-58.json",
+      "citekeys": {
+        "total": 7,
+        "processed": 7,
+        "failed": 0,
+        "list": [
+          "dagz_v01",
+          "dagz_v02",
+          "dwgz1992",
+          "gbda1987",
+          "gwcl2003",
+          "jgyl2011_v01",
+          "msgz1992"
+        ]
+      },
+      "source_job_id": "2026-01-02_00-33-11",
+      "quality_summary": {
+        "high_confidence": {
+          "count": 7,
+          "threshold": 0.95
+        },
+        "with_inferences": {
+          "count": 1,
+          "citekeys": [
+            "dwgz1992"
+          ]
+        }
+      },
+      "statistics": {
+        "avg_body_confidence": 1.0,
+        "avg_toc_confidence": 0.9971428571428572,
+        "total_pages_analyzed": 3642
+      }
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "parse_structure",
+      "job_id": "2026-01-02_11-32-58",
+      "timestamp": "2026-01-02T11:33:01.907740",
+      "status": "completed"
+    }
+  ]
+}

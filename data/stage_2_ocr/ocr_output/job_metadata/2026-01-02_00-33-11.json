@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "source_job_id": "2026-01-02_00-28-28",
+  "citekeys": {
+    "total": 7,
+    "successful": 7,
+    "failed": 0,
+    "list": [
+      "jgyl2011_v01",
+      "gwcl2003",
+      "dagz_v02",
+      "msgz1992",
+      "gbda1987",
+      "dwgz1992",
+      "dagz_v01"
+    ]
+  }
+}

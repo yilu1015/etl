@@ -1,0 +1,202 @@
+{
+  "job_id": "2026-01-03_16-54-45",
+  "timestamp": "2026-01-03T17:02:00.544333",
+  "source": null,
+  "pipeline_steps": {
+    "extract_toc_titles": {
+      "job_id": "2026-01-03_16-54-45",
+      "status": "completed",
+      "timestamp": "2026-01-03T17:02:00.544347",
+      "metadata_path": "extract_toc_titles/job_metadata/2026-01-03_16-54-45.json",
+      "citekeys": {
+        "total": 2,
+        "successful": 2,
+        "failed": 0,
+        "list": [
+          "dagz_v02",
+          "jgyl2011_v01"
+        ],
+        "failed_list": []
+      },
+      "source_job_id": "2026-01-02_11-32-58",
+      "execution_mode": "parallel",
+      "models": {
+        "list": [
+          "gemini2.5_flash",
+          "qwen3_30b_instruct",
+          "gpt5_mini",
+          "gemini2.5_pro",
+          "qwen3_4b_instruct"
+        ],
+        "statistics": {
+          "gemini2.5_flash": {
+            "successful": 2,
+            "failed": 0,
+            "total_extractions": 191,
+            "total_time_seconds": 376.59,
+            "avg_time_seconds": 188.3
+          },
+          "qwen3_30b_instruct": {
+            "successful": 2,
+            "failed": 0,
+            "total_extractions": 193,
+            "total_time_seconds": 148.02,
+            "avg_time_seconds": 74.01
+          },
+          "gpt5_mini": {
+            "successful": 2,
+            "failed": 0,
+            "total_extractions": 192,
+            "total_time_seconds": 434.52,
+            "avg_time_seconds": 217.26
+          },
+          "gemini2.5_pro": {
+            "successful": 2,
+            "failed": 0,
+            "total_extractions": 192,
+            "total_time_seconds": 256.99,
+            "avg_time_seconds": 128.5
+          },
+          "qwen3_4b_instruct": {
+            "successful": 2,
+            "failed": 0,
+            "total_extractions": 187,
+            "total_time_seconds": 167.19,
+            "avg_time_seconds": 83.59
+          }
+        }
+      },
+      "extraction_config": {
+        "passes": 2,
+        "max_char_buffer": 2500,
+        "batch_length": 1000
+      },
+      "timing": {
+        "total_seconds": 435.2,
+        "total_minutes": 7.25
+      },
+      "results": [
+        {
+          "citekey": "dagz_v02",
+          "status": "completed",
+          "models": {
+            "qwen3_30b_instruct": {
+              "status": "success",
+              "extraction_count": 96,
+              "timing": {
+                "extraction_seconds": 73.52,
+                "total_seconds": 73.52
+              },
+              "error": null
+            },
+            "qwen3_4b_instruct": {
+              "status": "success",
+              "extraction_count": 96,
+              "timing": {
+                "extraction_seconds": 84.63,
+                "total_seconds": 84.63
+              },
+              "error": null
+            },
+            "gemini2.5_pro": {
+              "status": "success",
+              "extraction_count": 95,
+              "timing": {
+                "extraction_seconds": 119.18,
+                "total_seconds": 119.18
+              },
+              "error": null
+            },
+            "gemini2.5_flash": {
+              "status": "success",
+              "extraction_count": 94,
+              "timing": {
+                "extraction_seconds": 203.43,
+                "total_seconds": 203.43
+              },
+              "error": null
+            },
+            "gpt5_mini": {
+              "status": "success",
+              "extraction_count": 95,
+              "timing": {
+                "extraction_seconds": 233.43,
+                "total_seconds": 233.43
+              },
+              "error": null
+            }
+          },
+          "successful_models": 5,
+          "total_models": 5,
+          "timing": {
+            "total_seconds": 234.06
+          }
+        },
+        {
+          "citekey": "jgyl2011_v01",
+          "status": "completed",
+          "models": {
+            "qwen3_30b_instruct": {
+              "status": "success",
+              "extraction_count": 97,
+              "timing": {
+                "extraction_seconds": 74.5,
+                "total_seconds": 74.5
+              },
+              "error": null
+            },
+            "qwen3_4b_instruct": {
+              "status": "success",
+              "extraction_count": 91,
+              "timing": {
+                "extraction_seconds": 82.56,
+                "total_seconds": 82.56
+              },
+              "error": null
+            },
+            "gemini2.5_pro": {
+              "status": "success",
+              "extraction_count": 97,
+              "timing": {
+                "extraction_seconds": 137.81,
+                "total_seconds": 137.81
+              },
+              "error": null
+            },
+            "gemini2.5_flash": {
+              "status": "success",
+              "extraction_count": 97,
+              "timing": {
+                "extraction_seconds": 173.15,
+                "total_seconds": 173.16
+              },
+              "error": null
+            },
+            "gpt5_mini": {
+              "status": "success",
+              "extraction_count": 97,
+              "timing": {
+                "extraction_seconds": 201.09,
+                "total_seconds": 201.09
+              },
+              "error": null
+            }
+          },
+          "successful_models": 5,
+          "total_models": 5,
+          "timing": {
+            "total_seconds": 201.13
+          }
+        }
+      ]
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "extract_toc_titles",
+      "job_id": "2026-01-03_16-54-45",
+      "timestamp": "2026-01-03T17:02:00.544352",
+      "status": "completed"
+    }
+  ]
+}

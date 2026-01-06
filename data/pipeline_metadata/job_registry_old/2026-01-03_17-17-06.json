@@ -1,0 +1,54 @@
+{
+  "job_id": "2026-01-03_17-17-06",
+  "timestamp": "2026-01-03T17:17:08.526419",
+  "source": null,
+  "pipeline_steps": {
+    "compare_toc_models": {
+      "job_id": "2026-01-03_17-17-06",
+      "status": "completed",
+      "timestamp": "2026-01-03T17:17:08.526438",
+      "metadata_path": "compare_toc_models/job_metadata/2026-01-03_17-17-06.json",
+      "citekeys": {
+        "total": 2,
+        "successful": 2,
+        "insufficient_models": 0,
+        "list": [
+          "dagz_v02",
+          "jgyl2011_v01"
+        ]
+      },
+      "source_job_id": "2026-01-03_16-54-45",
+      "min_models_required": 2,
+      "quality_summary": {
+        "total_issues": 198,
+        "citekeys_with_issues": 2
+      },
+      "results": [
+        {
+          "citekey": "dagz_v02",
+          "status": "success",
+          "num_models": 5,
+          "consensus_count": 94,
+          "num_issues": 101,
+          "failed_models": []
+        },
+        {
+          "citekey": "jgyl2011_v01",
+          "status": "success",
+          "num_models": 5,
+          "consensus_count": 97,
+          "num_issues": 97,
+          "failed_models": []
+        }
+      ]
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "compare_toc_models",
+      "job_id": "2026-01-03_17-17-06",
+      "timestamp": "2026-01-03T17:17:08.526443",
+      "status": "completed"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+citekey: "dagz_v02"
+description: "Domain-specific examples for archive regulations TOC"
+
+examples:
+  - category: "multi_line_title"
+    text: |
+      国家档案局关于转发《关于国家预算内基本建设投资全
+      部由拨款改为贷款的暂行规定》及《1985年国家预算收支科目》有关部分的通知
+      
+      （一九八五年一月七日）……(380)
+    extractions:
+      - extraction_text: "国家档案局关于转发《关于国家预算内基本建设投资全部由拨款改为贷款的暂行规定》及《1985年国家预算收支科目》有关部分的通知"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1985-01-07"
+          page: 380
+          references: []
+          authors: []
+    notes: "Title wraps across lines; page number comes after date"
+
+  - category: "date_at_end"
+    text: |
+      国家档案局关于档案室领导关系问题的解释和说明……（346）
+      
+      （一九六四年二月十八日）
+    extractions:
+      - extraction_text: "国家档案局关于档案室领导关系问题的解释和说明"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1964-02-18"
+          page: 346
+          references: []
+          authors: []
+    notes: "Date appears AFTER page number - unusual pattern"
+
+  - category: "author_with_title"
+    text: |
+      做一个完全的革命派……毛泽东（280）
+      
+      （一九五〇年六月二十三日）
+    extractions:
+      - extraction_text: "做一个完全的革命派"
+        extraction_class: "toc_entry"
+        attributes:
+          date: "1950-06-23"
+          page: 280
+          references: []
+          authors: ["毛泽东"]
+    notes: "Author name appears inline with title, before page number"

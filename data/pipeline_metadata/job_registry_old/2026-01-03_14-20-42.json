@@ -1,0 +1,77 @@
+{
+  "job_id": "2026-01-03_14-20-42",
+  "timestamp": "2026-01-03T14:26:52.999605",
+  "source": null,
+  "pipeline_steps": {
+    "extract_toc_titles": {
+      "job_id": "2026-01-03_14-20-42",
+      "status": "completed",
+      "timestamp": "2026-01-03T14:26:53.001265",
+      "metadata_path": "extract_toc_titles/job_metadata/2026-01-03_14-20-42.json",
+      "citekeys": {
+        "total": 1,
+        "successful": 1,
+        "failed": 0,
+        "list": [
+          "msgz1992"
+        ],
+        "failed_list": []
+      },
+      "source_job_id": "2026-01-02_11-32-58",
+      "execution_mode": "parallel",
+      "models": {
+        "list": [
+          "gemini2.5_flash"
+        ],
+        "statistics": {
+          "gemini2.5_flash": {
+            "successful": 1,
+            "failed": 0,
+            "total_extractions": 100,
+            "total_time_seconds": 369.42,
+            "avg_time_seconds": 369.42
+          }
+        }
+      },
+      "extraction_config": {
+        "passes": 4,
+        "max_char_buffer": 2000,
+        "batch_length": 1000
+      },
+      "timing": {
+        "total_seconds": 370.18,
+        "total_minutes": 6.17
+      },
+      "results": [
+        {
+          "citekey": "msgz1992",
+          "status": "completed",
+          "models": {
+            "gemini2.5_flash": {
+              "status": "success",
+              "extraction_count": 100,
+              "timing": {
+                "extraction_seconds": 369.42,
+                "total_seconds": 369.42
+              },
+              "error": null
+            }
+          },
+          "successful_models": 1,
+          "total_models": 1,
+          "timing": {
+            "total_seconds": 370.16
+          }
+        }
+      ]
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "extract_toc_titles",
+      "job_id": "2026-01-03_14-20-42",
+      "timestamp": "2026-01-03T14:26:53.001275",
+      "status": "completed"
+    }
+  ]
+}

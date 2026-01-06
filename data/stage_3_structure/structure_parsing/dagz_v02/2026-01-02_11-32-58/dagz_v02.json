@@ -1,0 +1,65 @@
+{
+  "citekey": "dagz_v02",
+  "source_job_id": "2026-01-02_00-33-11",
+  "parse_structure_job_id": "2026-01-02_11-32-58",
+  "generated_at": "2026-01-02T11:32:59.451032Z",
+  "body": {
+    "first_real_page": 2,
+    "last_real_page": 389,
+    "first_pdf_page": 15,
+    "last_pdf_page": 402,
+    "pdf_page_offset": -13,
+    "confidence": 1.0,
+    "detection_quality": {
+      "consistency_score": 1.0,
+      "position_consistency": 1.0,
+      "sequence_length": 364,
+      "gaps": [
+        33,
+        36,
+        50,
+        51,
+        68,
+        69,
+        101,
+        180,
+        181,
+        182,
+        183,
+        202,
+        203,
+        246,
+        247,
+        260,
+        261,
+        312,
+        313,
+        320,
+        321,
+        352,
+        353,
+        369
+      ]
+    }
+  },
+  "toc": {
+    "first_real_page": 1,
+    "last_real_page": 11,
+    "first_pdf_page": 2,
+    "last_pdf_page": 12,
+    "pdf_page_offset": -1,
+    "confidence": 1.0,
+    "detection_quality": {
+      "detection_method": "pagination_diff_offset",
+      "start_detection_method": "page_number_detected",
+      "start_confidence": 1.0,
+      "keyword_found": false,
+      "keyword_pdf_page": 2,
+      "inferred_flags": []
+    }
+  },
+  "metadata": {
+    "total_pdf_pages": "varies",
+    "notes": "Body: pages 2–389 (offset -13)"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "job_id": "2026-01-03_15-44-22",
+  "timestamp": "2026-01-03T15:53:40.583435",
+  "source": null,
+  "pipeline_steps": {
+    "extract_toc_titles": {
+      "job_id": "2026-01-03_15-44-22",
+      "status": "completed",
+      "timestamp": "2026-01-03T15:53:40.583450",
+      "metadata_path": "extract_toc_titles/job_metadata/2026-01-03_15-44-22.json",
+      "citekeys": {
+        "total": 1,
+        "successful": 1,
+        "failed": 0,
+        "list": [
+          "msgz1992"
+        ],
+        "failed_list": []
+      },
+      "source_job_id": "2026-01-02_11-32-58",
+      "execution_mode": "parallel",
+      "models": {
+        "list": [
+          "deepseek_r1_32b",
+          "gpt5_mini"
+        ],
+        "statistics": {
+          "deepseek_r1_32b": {
+            "successful": 1,
+            "failed": 0,
+            "total_extractions": 50,
+            "total_time_seconds": 224.76,
+            "avg_time_seconds": 224.76
+          },
+          "gpt5_mini": {
+            "successful": 1,
+            "failed": 0,
+            "total_extractions": 99,
+            "total_time_seconds": 557.38,
+            "avg_time_seconds": 557.38
+          }
+        }
+      },
+      "extraction_config": {
+        "passes": 2,
+        "max_char_buffer": 2500,
+        "batch_length": 1000
+      },
+      "timing": {
+        "total_seconds": 557.9,
+        "total_minutes": 9.3
+      },
+      "results": [
+        {
+          "citekey": "msgz1992",
+          "status": "completed",
+          "models": {
+            "deepseek_r1_32b": {
+              "status": "success",
+              "extraction_count": 50,
+              "timing": {
+                "extraction_seconds": 224.76,
+                "total_seconds": 224.76
+              },
+              "error": null
+            },
+            "gpt5_mini": {
+              "status": "success",
+              "extraction_count": 99,
+              "timing": {
+                "extraction_seconds": 557.38,
+                "total_seconds": 557.38
+              },
+              "error": null
+            }
+          },
+          "successful_models": 2,
+          "total_models": 2,
+          "timing": {
+            "total_seconds": 557.89
+          }
+        }
+      ]
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "extract_toc_titles",
+      "job_id": "2026-01-03_15-44-22",
+      "timestamp": "2026-01-03T15:53:40.583455",
+      "status": "completed"
+    }
+  ]
+}

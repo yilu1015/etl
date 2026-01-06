@@ -1,0 +1,59 @@
+{
+  "status": "completed",
+  "source_job_id": "2026-01-02_11-32-58",
+  "execution_mode": "parallel",
+  "citekeys": {
+    "total": 1,
+    "successful": 1,
+    "failed": 0,
+    "list": [
+      "msgz1992"
+    ],
+    "failed_list": []
+  },
+  "models": {
+    "list": [
+      "qwen3_30b_instruct"
+    ],
+    "statistics": {
+      "qwen3_30b_instruct": {
+        "successful": 1,
+        "failed": 0,
+        "total_extractions": 99,
+        "total_time_seconds": 87.64,
+        "avg_time_seconds": 87.64
+      }
+    }
+  },
+  "extraction_config": {
+    "passes": 2,
+    "max_char_buffer": 2500,
+    "batch_length": 1000
+  },
+  "timing": {
+    "total_seconds": 88.43,
+    "total_minutes": 1.47
+  },
+  "results": [
+    {
+      "citekey": "msgz1992",
+      "status": "completed",
+      "models": {
+        "qwen3_30b_instruct": {
+          "status": "success",
+          "extraction_count": 99,
+          "timing": {
+            "extraction_seconds": 87.64,
+            "total_seconds": 87.64
+          },
+          "error": null
+        }
+      },
+      "successful_models": 1,
+      "total_models": 1,
+      "timing": {
+        "total_seconds": 88.41
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "citekey": "msgz1992",
+  "source_job_id": "2026-01-02_11-32-58",
+  "extract_toc_titles_job_id": "2026-01-03_16-20-15",
+  "generated_at": "2026-01-03T21:24:17.316288Z",
+  "model": {
+    "key": "gemini2.5_flash",
+    "name": "gemini-2.5-flash",
+    "provider": "gemini"
+  },
+  "error": {
+    "type": "ResolverParsingError",
+    "message": "Failed to parse JSON content: Unterminated string starting at: line 194 column 12 (char 7347)"
+  },
+  "timing": {
+    "total_seconds": 241.24
+  },
+  "status": "error"
+}

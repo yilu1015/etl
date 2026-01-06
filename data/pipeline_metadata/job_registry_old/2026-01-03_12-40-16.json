@@ -1,0 +1,113 @@
+{
+  "job_id": "2026-01-03_12-40-16",
+  "timestamp": "2026-01-03T12:58:46.242581",
+  "source": null,
+  "pipeline_steps": {
+    "extract_toc_titles": {
+      "job_id": "2026-01-03_12-40-16",
+      "status": "completed",
+      "timestamp": "2026-01-03T12:58:46.242804",
+      "metadata_path": "extract_toc_titles/job_metadata/2026-01-03_12-40-16.json",
+      "citekeys": {
+        "total": 1,
+        "successful": 1,
+        "failed": 0,
+        "list": [
+          "msgz1992"
+        ],
+        "failed_list": []
+      },
+      "source_job_id": "2026-01-02_11-32-58",
+      "execution_mode": "parallel",
+      "models": {
+        "list": [
+          "qwen3_4b_instruct",
+          "gpt5_nano",
+          "gemini2.5_flash"
+        ],
+        "statistics": {
+          "qwen3_4b_instruct": {
+            "successful": 0,
+            "failed": 1,
+            "total_extractions": 0,
+            "total_time_seconds": 546.57,
+            "avg_time_seconds": 0
+          },
+          "gpt5_nano": {
+            "successful": 1,
+            "failed": 0,
+            "total_extractions": 121,
+            "total_time_seconds": 1108.48,
+            "avg_time_seconds": 1108.48
+          },
+          "gemini2.5_flash": {
+            "successful": 1,
+            "failed": 0,
+            "total_extractions": 99,
+            "total_time_seconds": 255.26,
+            "avg_time_seconds": 255.26
+          }
+        }
+      },
+      "extraction_config": {
+        "passes": 3,
+        "max_char_buffer": 1500,
+        "batch_length": 1000
+      },
+      "timing": {
+        "total_seconds": 1109.29,
+        "total_minutes": 18.49
+      },
+      "results": [
+        {
+          "citekey": "msgz1992",
+          "status": "completed",
+          "models": {
+            "gemini2.5_flash": {
+              "status": "success",
+              "extraction_count": 99,
+              "timing": {
+                "extraction_seconds": 255.25,
+                "total_seconds": 255.26
+              },
+              "error": null
+            },
+            "qwen3_4b_instruct": {
+              "status": "error",
+              "extraction_count": 0,
+              "timing": {
+                "total_seconds": 546.57
+              },
+              "error": {
+                "type": "InferenceRuntimeError",
+                "message": "Parallel inference error: OpenAI API error: <!DOCTYPE html>\n<html class=\"\" lang=\"en\">\n<head>\n    <meta charset=\"utf-8\" />\n    <meta\n            name=\"viewport\"\n            content=\"width=device-width, initial-scale=1.0, user-scalable=no\"\n    />\n    <meta\n            name=\"description\"\n            content=\"We're on a journey to advance and democratize artificial intelligence through open source and open science.\"\n    />\n    <meta property=\"fb:app_id\" content=\"1321688464574422\" />\n    <meta name=\"twitter:card\" content=\"summary_large_image\" />\n    <meta name=\"twitter:site\" content=\"@huggingface\" />\n    <meta\n            property=\"og:title\"\n            content=\"Hugging Face - The AI community building the future.\"\n    />\n    <meta property=\"og:type\" content=\"website\" />\n\n    <title>Hugging Face - The AI community building the future.</title>\n    <style>\n        body {\n            margin: 0;\n        }\n\n        main {\n            background-color: white;\n            min-height: 100vh;\n            padding: 7rem 1rem 8rem 1rem;\n            text-align: center;\n            font-family: Source Sans Pro, ui-sans-serif, system-ui, -apple-system,\n            BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,\n            sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,\n            Noto Color Emoji;\n        }\n\n        img {\n            width: 6rem;\n            height: 6rem;\n            margin: 0 auto 1rem;\n        }\n\n        h1 {\n            font-size: 3.75rem;\n            line-height: 1;\n            color: rgba(31, 41, 55, 1);\n            font-weight: 700;\n            box-sizing: border-box;\n            margin: 0 auto;\n        }\n\n        p, a {\n            color: rgba(107, 114, 128, 1);\n            font-size: 1.125rem;\n            line-height: 1.75rem;\n            max-width: 28rem;\n            box-sizing: border-box;\n            margin: 0 auto;\n        }\n\n        .dark main {\n            background-color: rgb(11, 15, 25);\n        }\n        .dark h1 {\n            color: rgb(209, 213, 219);\n        }\n        .dark p, .dark a {\n            color: rgb(156, 163, 175);\n        }\n    </style>\n    <script>\n        // On page load or when changing themes, best to add inline in `head` to avoid FOUC\n        const key = \"_tb_global_settings\";\n        let theme = window.matchMedia(\"(prefers-color-scheme: dark)\").matches\n            ? \"dark\"\n            : \"light\";\n        try {\n            const storageTheme = JSON.parse(window.localStorage.getItem(key)).theme;\n            if (storageTheme) {\n                theme = storageTheme === \"dark\" ? \"dark\" : \"light\";\n            }\n        } catch (e) {}\n        if (theme === \"dark\") {\n            document.documentElement.classList.add(\"dark\");\n        } else {\n            document.documentElement.classList.remove(\"dark\");\n        }\n    </script>\n</head>\n\n<body>\n<main>\n    <img\n            src=\"https://cdn-media.huggingface.co/assets/huggingface_logo.svg\"\n            alt=\"\"\n    />\n    <div>\n        <h1>504</h1>\n        <p>Gateway Timeout</p>\n    </div>\n</main>\n</body>\n</html>"
+              }
+            },
+            "gpt5_nano": {
+              "status": "success",
+              "extraction_count": 121,
+              "timing": {
+                "extraction_seconds": 1108.47,
+                "total_seconds": 1108.48
+              },
+              "error": null
+            }
+          },
+          "successful_models": 2,
+          "total_models": 3,
+          "timing": {
+            "total_seconds": 1109.27
+          }
+        }
+      ]
+    }
+  },
+  "execution_trace": [
+    {
+      "step": "extract_toc_titles",
+      "job_id": "2026-01-03_12-40-16",
+      "timestamp": "2026-01-03T12:58:46.242840",
+      "status": "completed"
+    }
+  ]
+}
